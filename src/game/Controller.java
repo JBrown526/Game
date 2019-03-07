@@ -6,7 +6,7 @@ import city.cs.engine.StepListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class KeyHandler extends KeyAdapter implements StepListener {
+public class Controller extends KeyAdapter implements StepListener {
 
     // ---------------------- FIELDS ----------------------
     // Movement variables
@@ -14,13 +14,13 @@ public class KeyHandler extends KeyAdapter implements StepListener {
     private static final float JUMP_SPEED = 8;
     private static final int BARK_TIME = 40;
 
-    private GameWorld world;    // Current world
+    private GameLevel world;    // Current world
     private Player player;      // Player to be controlled
     private int stepSum;        // Sum of steps since barkTimer started
     private boolean barking;    // Whether player is barking or not
 
     // ---------------------- CONSTRUCTOR ----------------------
-    public KeyHandler(GameWorld world) {
+    public Controller(GameLevel world) {
         this.world = world;
         player = world.getPlayer();
         barking = false;
