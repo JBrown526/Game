@@ -28,8 +28,9 @@ public class Controller extends KeyAdapter implements StepListener {
 
     // ---------------------- METHODS ----------------------
     // ---------------------- GENERAL ----------------------
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setWorld(GameLevel world) {
+        this.world = world;
+        player = world.getPlayer();
     }
 
     // ---------------------- MOVEMENT ----------------------

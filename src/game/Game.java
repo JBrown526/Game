@@ -11,7 +11,7 @@ public class Game {
     private static final boolean DEBUGGING = true;
 
     private GameLevel world;
-    private UserView view;
+    private MyView view;
     private Controller controller;
     private DebugViewer debug;
     private Tracker tracker;
@@ -26,10 +26,10 @@ public class Game {
         levelsSetup();
 
         world = levels[currentLevel];
-        debug(DEBUGGING);
+        debug();
         System.out.println("Level" + currentLevel);
         world.populate(this);
-        view = new UserView(world, 600, 600);
+        view = new MyView(world, world.getPlayer(), 1000, 500);
         final JFrame frame = new JFrame("A Dog and his Bone");
 
         // Window settings
@@ -69,35 +69,41 @@ public class Game {
         return world.getPlayer();
     }
 
+    public MyView getView() {
+        return view;
+    }
+
     public void goNextLevel() {
         int health = world.getPlayer().getHealth();
+        currentLevel++;
         world.stop();
         world.removeStepListener(tracker);
         if (currentLevel > LEVEL_COUNT) {
             System.exit(0);
         } else {
-            currentLevel++;
             System.out.println("Level " + currentLevel);
 
             world = levels[currentLevel];
             world.populate(this);
-            world.getPlayer().setHealth(health);
-
-            controller.setPlayer(world.getPlayer());
+            controller.setWorld(world);
             view.setWorld(world);
 
-            tracker.setBody(world.getPlayer());
-            world.addStepListener(tracker);
+            Player player = world.getPlayer();
+            player.setHealth(health);
+            view.setPlayer(player);
+            tracker.setBody(player);
 
             if (DEBUGGING) {
                 debug.setWorld(world);
             }
+
+            world.addStepListener(tracker);
             world.start();
         }
     }
 
-    private void debug(boolean debugging) {
-        if (debugging) {
+    private void debug() {
+        if (DEBUGGING) {
             currentLevel = 0;
             world = levels[currentLevel];
             debug = new DebugViewer(world, 600, 600);
