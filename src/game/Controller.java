@@ -113,4 +113,8 @@ public class Controller extends KeyAdapter implements StepListener {
         }
         barking = false;
     }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }

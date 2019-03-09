@@ -8,9 +8,12 @@ public class Game {
 
     // ---------------------- FIELDS ----------------------
     private static final int LEVEL_COUNT = 3;
+    private static final boolean DEBUGGING = true;
 
     private GameLevel world;
     private UserView view;
+    private Controller controller;
+    private DebugViewer debug;
     private int currentLevel;
 
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
@@ -22,6 +25,8 @@ public class Game {
         levelsSetup();
 
         world = levels[currentLevel];
+        debug(DEBUGGING);
+        world.populate(this);
         view = new UserView(world, 600, 600);
         final JFrame frame = new JFrame("A Dog and his Bone");
 
@@ -35,14 +40,12 @@ public class Game {
 
         // Controllers
         view.addMouseListener(new MouseHandler(view));
-        Controller controller = new Controller(world);
+        controller = new Controller(world);
         frame.addKeyListener(controller);
 
         // Step Listeners
         world.addStepListener(controller);
         world.addStepListener(new Tracker(view, world.getPlayer()));
-
-        debug(false);
 
         // Start world
         world.start();
@@ -62,6 +65,7 @@ public class Game {
     }
 
     public void goNextLevel() {
+        Player player = world.getPlayer();
         world.stop();
         if (currentLevel > LEVEL_COUNT) {
             System.exit(0);
@@ -69,16 +73,19 @@ public class Game {
             currentLevel++;
             world = levels[currentLevel];
             world.populate(this);
-
-
-
+            controller.setPlayer(player);
+            view.setWorld(world);
+            if (DEBUGGING) {
+                debug.setWorld(world);
+            }
+            world.start();
         }
     }
 
     private void debug(boolean debugging) {
         if (debugging) {
-            JFrame debug = new DebugViewer(world, 600, 600);
             world = levels[0];
+            debug = new DebugViewer(world, 600, 600);
         }
     }
 

@@ -14,8 +14,12 @@ public class BoneListener implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
         Player player = game.getPlayer();
-        if (e.getReportingBody() == player) {
+        if (e.getOtherBody() == player) {
+            System.out.println("next level");
             game.goNextLevel();
+        }
+        if (e.getOtherBody() instanceof Bark) {
+            e.getOtherBody().destroy();
         }
     }
 }

@@ -46,7 +46,7 @@ public class Player extends Walker {
      * player stats and creating the array of images for display based
      * off of the players current {@link Action} and {@link Direction}
      *
-     * @param world the {@link GameWorld} the player is currently in
+     * @param world the {@link GameLevel} the player is currently in
      */
     public Player(World world) {
         // Initialise values

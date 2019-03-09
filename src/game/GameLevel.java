@@ -6,10 +6,13 @@ import org.jbox2d.common.Vec2;
 public abstract class GameLevel extends World {
 
     private Player player;
+    private CollisionHandler collisionHandler;
 
     public void populate(Game game) {
         player = new Player(this);
         player.setPosition(startPosition());
+        collisionHandler = new CollisionHandler(player);
+
         Bone bone = new Bone(this);
         bone.setPosition(bonePosition());
         bone.addCollisionListener(new BoneListener(game));
@@ -21,6 +24,10 @@ public abstract class GameLevel extends World {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public CollisionHandler getCollisionHandler() {
+        return collisionHandler;
     }
 
     public void addBark(Player.Direction dir) {
