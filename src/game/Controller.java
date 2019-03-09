@@ -27,6 +27,11 @@ public class Controller extends KeyAdapter implements StepListener {
     }
 
     // ---------------------- METHODS ----------------------
+    // ---------------------- GENERAL ----------------------
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     // ---------------------- MOVEMENT ----------------------
     @Override
     public void keyPressed(KeyEvent e) {
@@ -43,7 +48,6 @@ public class Controller extends KeyAdapter implements StepListener {
         }
     }
 
-    // Code for barking
     private void bark() {
         player.updateImage(Player.Action.BARK);
         barking = true;
@@ -57,7 +61,6 @@ public class Controller extends KeyAdapter implements StepListener {
         player.jump(JUMP_SPEED);
     }
 
-    // Left/Right movement
     private void move(Player.Direction dir) {
         player.setMoving(true);
         player.setDirection(dir);
@@ -76,7 +79,6 @@ public class Controller extends KeyAdapter implements StepListener {
         }
     }
 
-    // Stop moving
     private void stopMove() {
         player.updateImage(player.getInAir() ? Player.Action.JUMP : Player.Action.SIT);
         player.setMoving(false);
@@ -102,7 +104,6 @@ public class Controller extends KeyAdapter implements StepListener {
     public void postStep(StepEvent e) {
     }
 
-
     private void postBark() {
         if (player.getInAir()) {
             player.updateImage(Player.Action.JUMP);
@@ -112,9 +113,5 @@ public class Controller extends KeyAdapter implements StepListener {
             player.updateImage(Player.Action.SIT);
         }
         barking = false;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 }

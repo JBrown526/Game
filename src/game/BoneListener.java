@@ -5,12 +5,15 @@ import city.cs.engine.CollisionListener;
 
 public class BoneListener implements CollisionListener {
 
+    // ---------------------- FIELDS ----------------------
     private Game game;
 
+    // ---------------------- CONSTRUCTOR ----------------------
     public BoneListener(Game game) {
         this.game = game;
     }
 
+    // ---------------------- METHODS ----------------------
     @Override
     public void collide(CollisionEvent e) {
         Player player = game.getPlayer();

@@ -62,6 +62,8 @@ public class Game {
         levels[3] = new LevelThree();
     }
 
+    // ---------------------- METHODS ----------------------
+
     public Player getPlayer() {
         return world.getPlayer();
     }

@@ -29,6 +29,7 @@ public class CollisionHandler implements CollisionListener {
         }
     }
 
+    // ---------------------- PLAYER EVENTS ----------------------
     private void playerCollision(CollisionEvent e) {
         final Body target = e.getReportingBody();
 
@@ -40,6 +41,17 @@ public class CollisionHandler implements CollisionListener {
         }
     }
 
+    private void playerPlatformCollision() {
+        player.setInAir(false);
+        player.updateImage(player.getMoving() ? Player.Action.RUN : Player.Action.SIT);
+        System.out.println("on ground");
+    }
+
+    private void playerSpikeCollision() {
+        player.updateHealth(SPIKE_DAMAGE);
+    }
+
+    // ---------------------- BARK EVENTS ----------------------
     private void barkCollision(CollisionEvent e) {
         final Body target = e.getReportingBody();
         final Body bark = e.getOtherBody();
@@ -50,15 +62,5 @@ public class CollisionHandler implements CollisionListener {
         if (target instanceof BreakablePlatform) {
             target.destroy();
         }
-    }
-
-    private void playerPlatformCollision() {
-        player.setInAir(false);
-        player.updateImage(player.getMoving() ? Player.Action.RUN : Player.Action.SIT);
-        System.out.println("on ground");
-    }
-
-    private void playerSpikeCollision() {
-        player.updateHealth(SPIKE_DAMAGE);
     }
 }

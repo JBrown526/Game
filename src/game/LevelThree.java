@@ -5,6 +5,7 @@ import org.jbox2d.common.Vec2;
 
 public class LevelThree extends GameLevel {
 
+    // ---------------------- METHODS ----------------------
     @Override
     public void populate(Game game, int playerHealth) {
         super.populate(game, playerHealth);
