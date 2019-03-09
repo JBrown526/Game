@@ -26,7 +26,7 @@ public class Game {
 
         world = levels[currentLevel];
         debug(DEBUGGING);
-        world.populate(this);
+        world.populate(this, 100);
         view = new UserView(world, 600, 600);
         final JFrame frame = new JFrame("A Dog and his Bone");
 
@@ -60,20 +60,21 @@ public class Game {
         levels[3] = new LevelThree();
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return world.getPlayer();
     }
 
     public void goNextLevel() {
-        Player player = world.getPlayer();
+        int health = world.getPlayer().getHealth();
         world.stop();
         if (currentLevel > LEVEL_COUNT) {
             System.exit(0);
         } else {
             currentLevel++;
+            System.out.println("Level " + currentLevel);
             world = levels[currentLevel];
-            world.populate(this);
-            controller.setPlayer(player);
+            world.populate(this, health);
+            controller.setPlayer(world.getPlayer());
             view.setWorld(world);
             if (DEBUGGING) {
                 debug.setWorld(world);
@@ -84,7 +85,8 @@ public class Game {
 
     private void debug(boolean debugging) {
         if (debugging) {
-            world = levels[0];
+            currentLevel = 0;
+            world = levels[currentLevel];
             debug = new DebugViewer(world, 600, 600);
         }
     }

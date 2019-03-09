@@ -48,12 +48,12 @@ public class Player extends Walker {
      *
      * @param world the {@link GameLevel} the player is currently in
      */
-    public Player(World world) {
+    public Player(World world, int health) {
         // Initialise values
         super(world, shape);
+        this.health = health;
         moving = false;
         inAir = false;
-        health = 100;
 
         populateImagesArray();
 
@@ -80,6 +80,10 @@ public class Player extends Walker {
 
     // ---------------------- METHODS ----------------------
     // ---------------------- HEALTH ----------------------
+
+    public int getHealth() {
+        return health;
+    }
 
     /**
      * This method updates the health of the character, and ensures
