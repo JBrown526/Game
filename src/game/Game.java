@@ -14,6 +14,7 @@ public class Game {
     private UserView view;
     private Controller controller;
     private DebugViewer debug;
+    private Tracker tracker;
     private int currentLevel;
 
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
@@ -44,8 +45,9 @@ public class Game {
         frame.addKeyListener(controller);
 
         // Step Listeners
+        tracker = new Tracker(view, world.getPlayer());
         world.addStepListener(controller);
-        world.addStepListener(new Tracker(view, world.getPlayer()));
+        world.addStepListener(tracker);
 
         // Start world
         world.start();
@@ -67,15 +69,22 @@ public class Game {
     public void goNextLevel() {
         int health = world.getPlayer().getHealth();
         world.stop();
+        world.removeStepListener(tracker);
         if (currentLevel > LEVEL_COUNT) {
             System.exit(0);
         } else {
             currentLevel++;
             System.out.println("Level " + currentLevel);
+
             world = levels[currentLevel];
             world.populate(this, health);
+
             controller.setPlayer(world.getPlayer());
             view.setWorld(world);
+
+            tracker.setBody(world.getPlayer());
+            world.addStepListener(tracker);
+
             if (DEBUGGING) {
                 debug.setWorld(world);
             }
