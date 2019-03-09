@@ -1,13 +1,19 @@
 package game;
 
+import city.cs.engine.SoundClip;
 import city.cs.engine.World;
 import org.jbox2d.common.Vec2;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 
 public abstract class GameLevel extends World {
 
     // ---------------------- FIELDS ----------------------
     private Player player;
     private CollisionHandler collisionHandler;
+    private SoundClip backingTrack;
 
     // ---------------------- METHODS ----------------------
     public void populate(Game game) {
@@ -22,6 +28,13 @@ public abstract class GameLevel extends World {
         Bone bone = new Bone(this);
         bone.setPosition(bonePosition());
         bone.addCollisionListener(new BoneListener(game));
+
+        try {
+            backingTrack = new SoundClip("data/audio/forestSoundtrack.wav");
+            backingTrack.loop();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     public abstract Vec2 startPosition();
@@ -43,5 +56,11 @@ public abstract class GameLevel extends World {
                 player.getPosition().x + ((dir == Player.Direction.LEFT) ? -0.5f : 0.5f),
                 player.getPosition().y)
         );
+        try {
+            SoundClip barkSound = new SoundClip("data/audio/bark.wav");
+            barkSound.play();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 }
