@@ -48,10 +48,10 @@ public class Player extends Walker {
      *
      * @param world the {@link GameLevel} the player is currently in
      */
-    public Player(World world, int health) {
+    public Player(World world) {
         // Initialise values
         super(world, shape);
-        this.health = health;
+        health = 100;
         moving = false;
         inAir = false;
 
@@ -83,6 +83,10 @@ public class Player extends Walker {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     /**

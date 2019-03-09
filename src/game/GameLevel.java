@@ -10,9 +10,9 @@ public abstract class GameLevel extends World {
     private CollisionHandler collisionHandler;
 
     // ---------------------- METHODS ----------------------
-    public void populate(Game game, int playerHealth) {
+    public void populate(Game game) {
         if (game.getPlayer() == null) {
-            player = new Player(this, playerHealth);
+            player = new Player(this);
         } else {
             player = game.getPlayer();
         }

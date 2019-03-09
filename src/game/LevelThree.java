@@ -7,8 +7,8 @@ public class LevelThree extends GameLevel {
 
     // ---------------------- METHODS ----------------------
     @Override
-    public void populate(Game game, int playerHealth) {
-        super.populate(game, playerHealth);
+    public void populate(Game game) {
+        super.populate(game);
 
         Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -11.5f);
         ground.addCollisionListener(super.getCollisionHandler());

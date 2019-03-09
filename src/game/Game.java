@@ -27,7 +27,7 @@ public class Game {
 
         world = levels[currentLevel];
         debug(DEBUGGING);
-        world.populate(this, 100);
+        world.populate(this);
         view = new UserView(world, 600, 600);
         final JFrame frame = new JFrame("A Dog and his Bone");
 
@@ -79,7 +79,8 @@ public class Game {
             System.out.println("Level " + currentLevel);
 
             world = levels[currentLevel];
-            world.populate(this, health);
+            world.populate(this);
+            world.getPlayer().setHealth(health);
 
             controller.setPlayer(world.getPlayer());
             view.setWorld(world);
