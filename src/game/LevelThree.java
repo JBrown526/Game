@@ -10,8 +10,10 @@ public class LevelThree extends GameLevel {
     public void populate(Game game) {
         super.populate(game);
 
-        Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -11.5f);
+        Platform ground = new Platform(this, new BoxShape(12, 0.5f), 0, -11.5f);
         ground.addCollisionListener(super.getCollisionHandler());
+
+        System.out.println("level populated");
     }
 
     @Override

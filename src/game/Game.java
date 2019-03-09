@@ -27,6 +27,7 @@ public class Game {
 
         world = levels[currentLevel];
         debug(DEBUGGING);
+        System.out.println("Level" + currentLevel);
         world.populate(this);
         view = new UserView(world, 600, 600);
         final JFrame frame = new JFrame("A Dog and his Bone");

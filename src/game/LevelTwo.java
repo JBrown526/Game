@@ -14,8 +14,10 @@ public class LevelTwo extends GameLevel {
         ground.addCollisionListener(super.getCollisionHandler());
 
         Spike spike = new Spike(this);
-        spike.setPosition(new Vec2(-8, -10.8f));
+        spike.setPosition(new Vec2(-8, -10.9f));
         spike.addCollisionListener(super.getCollisionHandler());
+
+        System.out.println("level populated");
     }
 
     @Override

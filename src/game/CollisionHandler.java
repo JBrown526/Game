@@ -48,6 +48,7 @@ public class CollisionHandler implements CollisionListener {
     }
 
     private void playerSpikeCollision() {
+        System.out.println("spike hit");
         player.updateHealth(SPIKE_DAMAGE);
     }
 
@@ -56,11 +57,15 @@ public class CollisionHandler implements CollisionListener {
         final Body target = e.getReportingBody();
         final Body bark = e.getOtherBody();
 
-        if (target instanceof Platform || target instanceof Spike) {
-            bark.destroy();
-        }
         if (target instanceof BreakablePlatform) {
+            System.out.println("It was super effective");
+            System.out.println("The platform fainted");
             target.destroy();
         }
+        else if (target instanceof Platform || target instanceof Spike) {
+            System.out.println("It wasn't very effective");
+            bark.destroy();
+        }
+
     }
 }

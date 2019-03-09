@@ -19,6 +19,8 @@ public class LevelDebug extends GameLevel {
         Spike spike = new Spike(this);
         spike.setPosition(new Vec2(-8, -10.8f));
         spike.addCollisionListener(super.getCollisionHandler());
+
+        System.out.println("level populated");
     }
 
     @Override
