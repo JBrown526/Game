@@ -11,7 +11,7 @@ public class Controller extends KeyAdapter implements StepListener {
     // ---------------------- FIELDS ----------------------
     // Movement variables
     private static final float WALKING_SPEED = 4;
-    private static final float JUMP_SPEED = 8;
+    private static final float JUMP_SPEED = 11;
     private static final int BARK_TIME = 40;
 
     private GameLevel world;    // Current world

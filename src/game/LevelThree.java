@@ -10,8 +10,14 @@ public class LevelThree extends GameLevel {
     public void populate(Game game) {
         super.populate(game);
 
-        Platform ground = new Platform(this, new BoxShape(12, 0.5f), 0, -12);
+        Platform ground = new Platform(this, new BoxShape(90, 0.5f), 0, -12);
         ground.addCollisionListener(super.getCollisionHandler());
+
+        for (int i = 0; i < 6; i++) {
+            BreakablePlatform bp = new BreakablePlatform(this, new BoxShape(0.5f, 5), i * 8 + 5, -7);
+            bp.addCollisionListener(super.getCollisionHandler());
+        }
+
 
         System.out.println("level populated");
     }
@@ -23,6 +29,6 @@ public class LevelThree extends GameLevel {
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(8, -8);
+        return new Vec2(70, -8);
     }
 }

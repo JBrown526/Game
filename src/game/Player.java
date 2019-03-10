@@ -2,6 +2,8 @@ package game;
 
 import city.cs.engine.*;
 
+import javax.swing.*;
+
 public class Player extends Walker {
 
     // ---------------------- FIELDS ----------------------
@@ -17,6 +19,8 @@ public class Player extends Walker {
     private boolean moving;         // Whether character is moving or not
     private Direction direction;    // Direction of movement
     private Action action;          // Current player action
+
+    private JProgressBar healthProgressBar;
 
     // Potential directions
 
@@ -48,9 +52,10 @@ public class Player extends Walker {
      *
      * @param world the {@link GameLevel} the player is currently in
      */
-    public Player(World world) {
+    public Player(World world, JProgressBar healthProgressBar) {
         // Initialise values
         super(world, shape);
+        this.healthProgressBar = healthProgressBar;
         health = 100;
         moving = false;
         inAir = false;
@@ -87,6 +92,8 @@ public class Player extends Walker {
 
     public void setHealth(int health) {
         this.health = health;
+        healthProgressBar.setValue(health);
+        healthProgressBar.setString("Health:" + this.health + "/" + MAX_HEALTH);
     }
 
     /**
@@ -107,6 +114,9 @@ public class Player extends Walker {
             System.out.println("Game over man, game over");
             // game over code
         }
+
+        healthProgressBar.setValue(health);
+        healthProgressBar.setString("Health: " + health + "/" + MAX_HEALTH);
     }
 
     // ---------------------- JUMPING ----------------------

@@ -14,9 +14,8 @@ public class MyView extends UserView {
     private Color color;
     private Rectangle ground;
 
-    public MyView(World world, Player player, int width, int height) {
+    public MyView(World world, int width, int height) {
         super(world, width, height);
-        this.player = player;
         ground = new Rectangle(0, 445, 1000, 50);
     }
 
@@ -27,7 +26,6 @@ public class MyView extends UserView {
 
     @Override
     protected void paintForeground(Graphics2D g) {
-        g.drawString("Health: " + player.getHealth(), 50, 50);
         g.setColor(color);
         g.fill(ground);
         g.draw(ground);

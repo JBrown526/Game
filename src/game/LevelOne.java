@@ -12,7 +12,7 @@ public class LevelOne extends GameLevel {
     public void populate(Game game) {
         super.populate(game);
 
-        Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -12);
+        Platform ground = new Platform(this, new BoxShape(70, 0.5f), 0, -12);
         ground.addCollisionListener(super.getCollisionHandler());
 
         game.getView().setBackground("data/backgrounds/forest.png");
@@ -28,6 +28,6 @@ public class LevelOne extends GameLevel {
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(8, -8);
+        return new Vec2(20, -10);
     }
 }

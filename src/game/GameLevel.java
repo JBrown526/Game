@@ -14,11 +14,12 @@ public abstract class GameLevel extends World {
     private Player player;
     private CollisionHandler collisionHandler;
     private SoundClip backingTrack;
+    private boolean playing;
 
     // ---------------------- METHODS ----------------------
     public void populate(Game game) {
         if (game.getPlayer() == null) {
-            player = new Player(this);
+            player = new Player(this, game.getHealthProgressBar());
         } else {
             player = game.getPlayer();
         }
@@ -28,14 +29,14 @@ public abstract class GameLevel extends World {
         Bone bone = new Bone(this);
         bone.setPosition(bonePosition());
         bone.addCollisionListener(new BoneListener(game));
-        if (!game.getMusic()) {
+        if (!game.getMusicPlaying()) {
             try {
                 backingTrack = new SoundClip("data/audio/forest.wav");
                 backingTrack.loop();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
-            game.setMusic(true);
+            game.setMusicPlaying(true);
         }
     }
 
@@ -63,6 +64,28 @@ public abstract class GameLevel extends World {
             barkSound.play();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setBackingTrack(String fileName) {
+        backingTrack.stop();
+        try {
+            backingTrack = new SoundClip(fileName);
+            backingTrack.loop();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void pause(){
+        if (playing) {
+            this.stop();
+            System.out.println("Game paused");
+            playing = false;
+        } else {
+            this.start();
+            System.out.println("Game resumed");
+            playing = true;
         }
     }
 }

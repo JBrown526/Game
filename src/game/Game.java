@@ -3,12 +3,13 @@ package game;
 import city.cs.engine.*;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Game {
 
     // ---------------------- FIELDS ----------------------
     private static final int LEVEL_COUNT = 3;
-    private static final boolean DEBUGGING = true;
+    private static final boolean DEBUGGING = false;
 
     private GameLevel world;
     private MyView view;
@@ -16,7 +17,10 @@ public class Game {
     private DebugViewer debug;
     private Tracker tracker;
     private int currentLevel;
-    private boolean music;
+    private boolean musicPlaying;
+    private JProgressBar healthProgressBar;
+
+    private int lastLevelHealth;
 
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
 
@@ -29,29 +33,34 @@ public class Game {
         world = levels[currentLevel];
         debug();
         System.out.println("Level" + currentLevel);
+        view = new MyView(world, 1000, 480);
         world.populate(this);
-        view = new MyView(world, world.getPlayer(), 1000, 480);
-        final JFrame frame = new JFrame("A Dog and his Bone");
+        view.setPlayer(getPlayer());
+        final JFrame window = new JFrame("A Dog and his Bone");
 
         // Window settings
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationByPlatform(true);
-        frame.add(view);
-        frame.setResizable(false);
-        frame.pack();
-        frame.setVisible(true);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLocationByPlatform(true);
+        window.setResizable(false);
 
         // Controllers
         view.addMouseListener(new MouseHandler(view));
         controller = new Controller(world);
-        frame.addKeyListener(controller);
+        window.addKeyListener(controller);
 
         // Step Listeners
-        tracker = new Tracker(view, world.getPlayer());
+        tracker = new Tracker(view, getPlayer());
         world.addStepListener(controller);
         world.addStepListener(tracker);
 
+        ControlPanel menu = new ControlPanel(this);
+        window.add(menu.getMainPanel(), BorderLayout.NORTH);
+        window.add(view, BorderLayout.CENTER);
+        healthProgressBar = menu.getHealthProgressBar();
+
         // Start world
+        window.pack();
+        window.setVisible(true);
         world.start();
     }
 
@@ -74,41 +83,56 @@ public class Game {
         return view;
     }
 
-    public boolean getMusic() {
-        return music;
+    public GameLevel getWorld() {
+        return world;
     }
 
-    public void setMusic(boolean music) {
-        this.music = music;
+    public boolean getMusicPlaying() {
+        return musicPlaying;
+    }
+
+    public void setMusicPlaying(boolean musicPlaying) {
+        this.musicPlaying = musicPlaying;
     }
 
     public void goNextLevel() {
-        int health = world.getPlayer().getHealth();
+        lastLevelHealth = world.getPlayer().getHealth();
         currentLevel++;
         world.stop();
         world.removeStepListener(tracker);
         if (currentLevel > LEVEL_COUNT) {
             System.exit(0);
         } else {
-            System.out.println("Level " + currentLevel);
-
-            world = levels[currentLevel];
-            world.populate(this);
-            controller.setWorld(world);
-            view.setWorld(world);
-
-            Player player = world.getPlayer();
-            player.setHealth(health);
-            view.setPlayer(player);
-            tracker.setBody(player);
-
-            if (DEBUGGING) {
-                debug.setWorld(world);
-            }
-
-            world.addStepListener(tracker);
-            world.start();
+            levelStart();
         }
+    }
+
+    public void resetLevel() {
+        world.stop();
+        world.removeStepListener(tracker);
+        world = null;
+        levelStart();
+    }
+
+    private void levelStart() {
+        System.out.println("Level " + currentLevel);
+
+        world = levels[currentLevel];
+        world.populate(this);
+        controller.setWorld(world);
+        view.setWorld(world);
+
+        Player player = world.getPlayer();
+        player.setHealth(lastLevelHealth);
+        view.setPlayer(player);
+        tracker.setBody(player);
+
+        if (DEBUGGING) {
+            debug.setWorld(world);
+        }
+
+        world.addStepListener(tracker);
+        world.start();
     }
 
     private void debug() {
@@ -117,6 +141,10 @@ public class Game {
             world = levels[currentLevel];
             debug = new DebugViewer(world, 600, 600);
         }
+    }
+
+    public JProgressBar getHealthProgressBar() {
+        return healthProgressBar;
     }
 
     // ---------------------- RUN ----------------------
