@@ -3,6 +3,8 @@ package game;
 import city.cs.engine.BoxShape;
 import org.jbox2d.common.Vec2;
 
+import java.awt.*;
+
 public class LevelOne extends GameLevel {
 
     // ---------------------- METHODS ----------------------
@@ -10,10 +12,11 @@ public class LevelOne extends GameLevel {
     public void populate(Game game) {
         super.populate(game);
 
-        Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -11.5f);
+        Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -12);
         ground.addCollisionListener(super.getCollisionHandler());
 
         game.getView().setBackground("data/backgrounds/forest.png");
+        game.getView().setColor(new Color(24, 48, 52));
 
         System.out.println("level populated");
     }
