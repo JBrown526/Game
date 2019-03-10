@@ -16,6 +16,7 @@ public class Game {
     private DebugViewer debug;
     private Tracker tracker;
     private int currentLevel;
+    private boolean music;
 
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
 
@@ -29,7 +30,7 @@ public class Game {
         debug();
         System.out.println("Level" + currentLevel);
         world.populate(this);
-        view = new MyView(world, world.getPlayer(), 1000, 500);
+        view = new MyView(world, world.getPlayer(), 1000, 480);
         final JFrame frame = new JFrame("A Dog and his Bone");
 
         // Window settings
@@ -71,6 +72,14 @@ public class Game {
 
     public MyView getView() {
         return view;
+    }
+
+    public boolean getMusic() {
+        return music;
+    }
+
+    public void setMusic(boolean music) {
+        this.music = music;
     }
 
     public void goNextLevel() {

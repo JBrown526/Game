@@ -28,12 +28,14 @@ public abstract class GameLevel extends World {
         Bone bone = new Bone(this);
         bone.setPosition(bonePosition());
         bone.addCollisionListener(new BoneListener(game));
-
-        try {
-            backingTrack = new SoundClip("data/audio/forestSoundtrack.wav");
-            backingTrack.loop();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
+        if (!game.getMusic()) {
+            try {
+                backingTrack = new SoundClip("data/audio/forest.wav");
+                backingTrack.loop();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
+            }
+            game.setMusic(true);
         }
     }
 

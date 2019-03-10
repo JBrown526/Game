@@ -26,7 +26,7 @@ public class Tracker implements StepListener {
     @Override
     public void postStep(StepEvent e){
         // reposition camera
-        view.setCentre(new Vec2(body.getPosition()));
+        view.setCentre(new Vec2(body.getPosition().x, -1));
     }
 
     public void setBody(Body body) {

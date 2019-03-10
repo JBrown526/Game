@@ -13,6 +13,8 @@ public class LevelThree extends GameLevel {
         Platform ground = new Platform(this, new BoxShape(12, 0.5f), 0, -11.5f);
         ground.addCollisionListener(super.getCollisionHandler());
 
+        game.getView().setBackground("data/backgrounds/plains.jpg");
+
         System.out.println("level populated");
     }
 

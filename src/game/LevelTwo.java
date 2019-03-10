@@ -17,6 +17,8 @@ public class LevelTwo extends GameLevel {
         spike.setPosition(new Vec2(-8, -10.9f));
         spike.addCollisionListener(super.getCollisionHandler());
 
+        game.getView().setBackground("data/backgrounds/plains.jpg");
+
         System.out.println("level populated");
     }
 
