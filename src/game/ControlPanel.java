@@ -19,7 +19,7 @@ public class ControlPanel {
 
         healthProgressBar.setMinimum(Player.MIN_HEALTH);
         healthProgressBar.setMaximum(Player.MAX_HEALTH);
-        healthProgressBar.setString(player.getHealth() + "/100");
+        healthProgressBar.setString(player.getHealth() + "/" + Player.MAX_HEALTH);
         healthProgressBar.setStringPainted(true);
         healthProgressBar.setValue(player.getHealth());
 

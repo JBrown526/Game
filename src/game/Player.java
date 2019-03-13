@@ -106,7 +106,7 @@ public class Player extends Walker {
      * @param deltaHealth the change in health to be applied
      */
     public void updateHealth(int deltaHealth) {
-        final int newHealth = health + deltaHealth;
+        int newHealth = health + deltaHealth;
         // Ensures health cannot exceed MAX_HEALTH
         health = (newHealth <= MAX_HEALTH) ? newHealth : MAX_HEALTH;
 
