@@ -4,10 +4,12 @@ import city.cs.engine.*;
 
 import javax.swing.*;
 
+
 public class Player extends Walker {
 
     // ---------------------- FIELDS ----------------------
-    private static final int MAX_HEALTH = 100;
+    public static final int MIN_HEALTH = 0;
+    public static final int MAX_HEALTH = 100;
 
     // Shape
     private static final Shape shape = new PolygonShape(
@@ -109,7 +111,7 @@ public class Player extends Walker {
         health = (newHealth <= MAX_HEALTH) ? newHealth : MAX_HEALTH;
 
         System.out.println("Health: " + health);
-        if (health <= 0) {
+        if (health <= MIN_HEALTH) {
             destroy();
             System.out.println("Game over man, game over");
             // game over code

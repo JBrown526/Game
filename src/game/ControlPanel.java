@@ -17,6 +17,8 @@ public class ControlPanel {
         pauseButton.setFocusable(false);
         healthProgressBar.setFocusable(false);
 
+        healthProgressBar.setMinimum(Player.MIN_HEALTH);
+        healthProgressBar.setMaximum(Player.MAX_HEALTH);
         healthProgressBar.setString(player.getHealth() + "/100");
         healthProgressBar.setStringPainted(true);
         healthProgressBar.setValue(player.getHealth());

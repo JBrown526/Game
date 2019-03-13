@@ -7,15 +7,12 @@ public class Tracker implements StepListener {
 
     // ---------------------- FIELDS ----------------------
     private WorldView view;
-    private WorldView dView;
     private Body body;
-    private boolean debugging;
 
     // ---------------------- CONSTRUCTOR ----------------------
     public Tracker(WorldView view, Body body){
         this.view = view;
         this.body = body;
-        debugging = false;
     }
 
     // ---------------------- METHODS ----------------------
@@ -27,9 +24,6 @@ public class Tracker implements StepListener {
     public void postStep(StepEvent e){
         // reposition camera
         view.setCentre(new Vec2(body.getPosition().x, -1));
-        if (debugging) {
-            dView.setCentre(new Vec2(body.getPosition().x, -1));
-        }
     }
 
     public void setBody(Body body) {
