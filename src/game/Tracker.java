@@ -18,6 +18,7 @@ public class Tracker implements StepListener {
     // ---------------------- METHODS ----------------------
     @Override
     public void preStep(StepEvent e){
+        // no need for any changes to view in pre step
     }
 
     @Override

@@ -67,7 +67,7 @@ public class Player extends Walker {
         initialImageAssignment();
     }
 
-    private void populateImagesArray() {
+    private static void populateImagesArray() {
         images[0][0] = new BodyImage("data/player/dogBarkL.gif", 2.4f);
         images[0][1] = new BodyImage("data/player/dogJumpL.gif", 2.4f);
         images[0][2] = new BodyImage("data/player/dogRunL.gif", 2.4f);

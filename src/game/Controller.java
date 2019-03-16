@@ -73,10 +73,8 @@ public class Controller extends KeyAdapter implements StepListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_A) {
-            stopMove(); // stop moving left
-        } else if (code == KeyEvent.VK_D) {
-            stopMove(); // stop moving right
+        if (code == KeyEvent.VK_A || code == KeyEvent.VK_D) {
+            stopMove();
         }
     }
 

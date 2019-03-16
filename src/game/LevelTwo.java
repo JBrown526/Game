@@ -21,7 +21,7 @@ public class LevelTwo extends GameLevel {
             spike.addCollisionListener(super.getCollisionHandler());
         }
 
-        game.getView().setBackground("data/backgrounds/plains.jpg");
+        game.getView().setBackgroundImage("data/backgrounds/plains.jpg");
         game.getView().setColor(new Color(80, 194, 99));
 
         System.out.println("level populated");

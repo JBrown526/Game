@@ -10,7 +10,7 @@ import city.cs.engine.*;
 public class MyView extends UserView {
 
     private Player player;
-    private Image background;
+    private Image backgroundImage;
     private Color color;
     private Rectangle ground;
 
@@ -21,7 +21,7 @@ public class MyView extends UserView {
 
     @Override
     protected void paintBackground(Graphics2D g) {
-        g.drawImage(background, 0, 0, this);
+        g.drawImage(backgroundImage, 0, 0, this);
     }
 
     @Override
@@ -31,9 +31,9 @@ public class MyView extends UserView {
         g.draw(ground);
     }
 
-    public void setBackground(String filePath) {
-        background = new ImageIcon(filePath).getImage();
-        System.out.println("update background");
+    public void setBackgroundImage(String filePath) {
+        backgroundImage = new ImageIcon(filePath).getImage();
+        System.out.println("update backgroundImage");
     }
 
     public void setColor(Color color) {
