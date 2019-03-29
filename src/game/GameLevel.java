@@ -40,6 +40,7 @@ public abstract class GameLevel extends World {
         }
     }
 
+    // test
     public abstract Vec2 startPosition();
 
     public abstract Vec2 bonePosition();
