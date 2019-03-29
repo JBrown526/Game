@@ -2,8 +2,11 @@ package game;
 
 import city.cs.engine.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class Game {
 
@@ -17,7 +20,8 @@ public class Game {
     private DebugViewer debug;
     private Tracker tracker;
     private int currentLevel;
-    private boolean musicPlaying;
+    private SoundClip backingTrack;
+    //    private boolean musicPlaying;
     private JProgressBar healthProgressBar;
 
     private int lastLevelHealth;
@@ -32,7 +36,10 @@ public class Game {
 
         world = levels[currentLevel];
         debug();
+        setBackingTrack();
         System.out.println("Level" + currentLevel);
+
+
         view = new MyView(world, 1000, 480);
         world.populate(this);
         view.setPlayer(getPlayer());
@@ -87,13 +94,28 @@ public class Game {
         return world;
     }
 
-    public boolean getMusicPlaying() {
-        return musicPlaying;
+//    public boolean getMusicPlaying() {
+//        return musicPlaying;
+//    }
+//
+//    public void setMusicPlaying(boolean musicPlaying) {
+//        this.musicPlaying = musicPlaying;
+//    }
+
+    private void setBackingTrack() {
+        if (world.newAudio()) {
+            if (backingTrack != null) {
+                backingTrack.stop();
+            }
+            try {
+                backingTrack = new SoundClip(world.backingTrackFile());
+                backingTrack.loop();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void setMusicPlaying(boolean musicPlaying) {
-        this.musicPlaying = musicPlaying;
-    }
 
     public void goNextLevel() {
         lastLevelHealth = world.getPlayer().getHealth();
@@ -121,6 +143,7 @@ public class Game {
         world.populate(this);
         controller.setWorld(world);
         view.setWorld(world);
+        setBackingTrack();
 
         Player player = world.getPlayer();
         player.setHealth(lastLevelHealth);

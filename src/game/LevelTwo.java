@@ -36,4 +36,14 @@ public class LevelTwo extends GameLevel {
     public Vec2 bonePosition() {
         return new Vec2(50, -10);
     }
+
+    @Override
+    public boolean newAudio() {
+        return true;
+    }
+
+    @Override
+    public String backingTrackFile() {
+        return "data/audio/plains.wav";
+    }
 }

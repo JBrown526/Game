@@ -30,4 +30,14 @@ public class LevelOne extends GameLevel {
     public Vec2 bonePosition() {
         return new Vec2(20, -10);
     }
+
+    @Override
+    public boolean newAudio() {
+        return true;
+    }
+
+    @Override
+    public String backingTrackFile() {
+        return "data/audio/forest.wav";
+    }
 }

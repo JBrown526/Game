@@ -32,4 +32,14 @@ public class LevelDebug extends GameLevel {
     public Vec2 bonePosition() {
         return new Vec2(8, -8);
     }
+
+    @Override
+    public boolean newAudio() {
+        return true;
+    }
+
+    @Override
+    public String backingTrackFile() {
+        return "data/audio/debug.wav";
+    }
 }
