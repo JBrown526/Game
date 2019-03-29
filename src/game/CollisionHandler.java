@@ -56,6 +56,7 @@ public class CollisionHandler implements CollisionListener {
     }
 
     private void playerTennisBallCollision(Body target) {
+        player.updateScore(1);
         target.destroy();
         System.out.println("bone collected");
     }

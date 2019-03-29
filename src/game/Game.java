@@ -22,6 +22,7 @@ public class Game {
     private int currentLevel;
     private SoundClip backingTrack;
     private JProgressBar healthProgressBar;
+    private JLabel scoreLabel;
 
     private int lastLevelHealth;
 

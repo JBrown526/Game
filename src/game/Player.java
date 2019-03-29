@@ -16,28 +16,21 @@ public class Player extends Walker {
             -1.649f, -1.152f, -1.655f, 0.61f, -1.367f, 1.16f, 1.26f, 1.146f, 1.642f, 0.677f, 1.642f, -1.119f);
     //-1.488f, -0.966f, -1.488f, 0.522f, -1.158f, 1.092f, -0.6f, 1.092f, 1.434f, 0.372f, 1.434f, -0.402f, 0.804f, -0.954f
 
-    private int health;             // Player health
-    private boolean inAir;          // Whether character is jumping or on the ground
-    private boolean moving;         // Whether character is moving or not
-    private Direction direction;    // Direction of movement
-    private Action action;          // Current player action
+    private int health;
+    private int score;
+    private boolean inAir;
+    private boolean moving;
+    private Direction direction;
+    private Action action;
 
     private JProgressBar healthProgressBar;
 
     // Potential directions
-
-    /**
-     * The direction the player is facing in
-     */
     enum Direction {
         LEFT, RIGHT
     }
 
     // Potential actions
-
-    /**
-     * The action being performed by the player
-     */
     enum Action {
         BARK, JUMP, RUN, SIT
     }
@@ -119,6 +112,26 @@ public class Player extends Walker {
 
         healthProgressBar.setValue(health);
         healthProgressBar.setString("Health: " + health + "/" + MAX_HEALTH);
+    }
+
+    // ---------------------- SCORE ----------------------
+
+    public void setScoreLabel(JLabel scoreLabel) {
+        this.scoreLabel = scoreLabel;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+        scoreLabel.setText("Score: " + score);
+    }
+
+    public void updateScore(int deltaScore) {
+        score += deltaScore;
+        scoreLabel.setText("Score: " + score);
     }
 
     // ---------------------- JUMPING ----------------------
