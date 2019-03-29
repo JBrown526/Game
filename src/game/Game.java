@@ -22,7 +22,6 @@ public class Game {
     private int currentLevel;
     private SoundClip backingTrack;
     private JProgressBar healthProgressBar;
-    private JLabel scoreLabel;
 
     private int lastLevelHealth;
 
@@ -83,6 +82,7 @@ public class Game {
     }
 
     // ---------------------- METHODS ----------------------
+    // ---------------------- GETTERS ----------------------
 
     public Player getPlayer() {
         return world.getPlayer();
@@ -95,6 +95,12 @@ public class Game {
     public GameLevel getWorld() {
         return world;
     }
+
+    public JProgressBar getHealthProgressBar() {
+        return healthProgressBar;
+    }
+
+    // ---------------------- AUDIO ----------------------
 
     private void setBackingTrack() {
         if (world.newAudio()) {
@@ -110,7 +116,7 @@ public class Game {
         }
     }
 
-
+    // ---------------------- LEVELS ----------------------
     public void goNextLevel() {
         lastLevelHealth = world.getPlayer().getHealth();
         currentLevel++;
@@ -133,16 +139,17 @@ public class Game {
     private void levelStart() {
         System.out.println("Level " + currentLevel);
 
+        // setup world
         world = levels[currentLevel];
         world.populate(this);
         controller.setWorld(world);
         view.setWorld(world);
         setBackingTrack();
 
-        Player player = world.getPlayer();
-        player.setHealth(lastLevelHealth);
-        view.setPlayer(player);
-        tracker.setBody(player);
+        // setup player
+        world.getPlayer().setHealth(lastLevelHealth);
+        view.setPlayer(world.getPlayer());
+        tracker.setBody(world.getPlayer());
 
         if (DEBUGGING) {
             debug.setWorld(world);
@@ -152,6 +159,8 @@ public class Game {
         world.start();
     }
 
+    // ---------------------- DEBUG ----------------------
+
     private void debug() {
         if (DEBUGGING) {
             currentLevel = 0;
@@ -160,11 +169,8 @@ public class Game {
         }
     }
 
-    public JProgressBar getHealthProgressBar() {
-        return healthProgressBar;
-    }
-
     // ---------------------- RUN ----------------------
+
     public static void main(String[] args) {
         new Game();
     }

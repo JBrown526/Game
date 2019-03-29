@@ -71,7 +71,7 @@ public class CollisionHandler implements CollisionListener {
             bark.destroy();
             System.out.println("It was super effective");
             System.out.println("The platform fainted");
-        } else if (target instanceof Platform || target instanceof Spike) {
+        } else if (target instanceof Platform || target instanceof Spike || target instanceof TennisBall) {
             bark.destroy();
             System.out.println("It wasn't very effective");
         }
