@@ -3,6 +3,10 @@ package game;
 import city.cs.engine.*;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Player extends Walker {
@@ -23,6 +27,7 @@ public class Player extends Walker {
     private Direction direction;
     private Action action;
 
+    private List<ChangeListener> listeners;
     private JProgressBar healthProgressBar;
 
     // Potential directions
@@ -58,6 +63,8 @@ public class Player extends Walker {
         populateImagesArray();
 
         initialImageAssignment();
+
+        listeners = new LinkedList<ChangeListener>();
     }
 
     private static void populateImagesArray() {
@@ -116,22 +123,18 @@ public class Player extends Walker {
 
     // ---------------------- SCORE ----------------------
 
-    public void setScoreLabel(JLabel scoreLabel) {
-        this.scoreLabel = scoreLabel;
-    }
-
     public int getScore() {
         return score;
     }
 
     public void setScore(int score) {
         this.score = score;
-        scoreLabel.setText("Score: " + score);
+        changed();
     }
 
     public void updateScore(int deltaScore) {
         score += deltaScore;
-        scoreLabel.setText("Score: " + score);
+        changed();
     }
 
     // ---------------------- JUMPING ----------------------
@@ -249,4 +252,22 @@ public class Player extends Walker {
         removeAllImages();
         addImage(images[getDirectionCode()][getActionCode()]);
     }
+
+    // ---------------------- CHANGE LISTENER ----------------------
+
+    public void addChangeListener(ChangeListener l) {
+        listeners.add(l);
+    }
+
+    public void removeChangeListener(ChangeListener l) {
+        listeners.remove(l);
+    }
+
+    protected void changed() {
+        ChangeEvent e = new ChangeEvent(this);
+        for (ChangeListener l : listeners) {
+            l.stateChanged(e);
+        }
+    }
+
 }

@@ -39,7 +39,6 @@ public class Game {
         setBackingTrack();
         System.out.println("Level" + currentLevel);
 
-
         view = new MyView(world, 1000, 480);
         world.populate(this);
         view.setPlayer(getPlayer());
@@ -59,6 +58,9 @@ public class Game {
         tracker = new Tracker(view, getPlayer());
         world.addStepListener(controller);
         world.addStepListener(tracker);
+
+        PlayerScore playerScore = new PlayerScore(this);
+        view.add(playerScore);
 
         ControlPanel menu = new ControlPanel(this);
         window.add(menu.getMainPanel(), BorderLayout.NORTH);
