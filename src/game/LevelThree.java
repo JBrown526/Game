@@ -14,7 +14,7 @@ public class LevelThree extends GameLevel {
         ground.addCollisionListener(super.getCollisionHandler());
 
         for (int i = 0; i < 6; i++) {
-            BreakablePlatform bp = new BreakablePlatform(this, new BoxShape(0.5f, 5), i * 8 + 5, -7);
+            BreakablePlatform bp = new BreakablePlatform(this, 0.5f, 5, i * 8 + 5, -7, BreakablePlatform.Biome.PLAINS);
             bp.addCollisionListener(super.getCollisionHandler());
         }
 
@@ -29,7 +29,7 @@ public class LevelThree extends GameLevel {
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(70, -8);
+        return new Vec2(55, -8);
     }
 
     @Override
