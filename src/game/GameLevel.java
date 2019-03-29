@@ -13,7 +13,6 @@ public abstract class GameLevel extends World {
     // ---------------------- FIELDS ----------------------
     private Player player;
     private CollisionHandler collisionHandler;
-//    private SoundClip backingTrack;
     private boolean playing;
 
     // ---------------------- METHODS ----------------------
@@ -29,18 +28,8 @@ public abstract class GameLevel extends World {
         Bone bone = new Bone(this);
         bone.setPosition(bonePosition());
         bone.addCollisionListener(new BoneListener(game));
-//        if (!game.getMusicPlaying()) {
-//            try {
-//                backingTrack = new SoundClip("data/audio/forest.wav");
-//                backingTrack.loop();
-//            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-//                e.printStackTrace();
-//            }
-//            game.setMusicPlaying(true);
-//        }
     }
 
-    // test
     public abstract Vec2 startPosition();
 
     public abstract Vec2 bonePosition();
@@ -71,16 +60,6 @@ public abstract class GameLevel extends World {
             e.printStackTrace();
         }
     }
-
-//    public void setBackingTrack(String fileName) {
-//        backingTrack.stop();
-//        try {
-//            backingTrack = new SoundClip(fileName);
-//            backingTrack.loop();
-//        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public void pause(){
         if (playing) {

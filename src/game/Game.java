@@ -21,7 +21,6 @@ public class Game {
     private Tracker tracker;
     private int currentLevel;
     private SoundClip backingTrack;
-    //    private boolean musicPlaying;
     private JProgressBar healthProgressBar;
 
     private int lastLevelHealth;
@@ -93,14 +92,6 @@ public class Game {
     public GameLevel getWorld() {
         return world;
     }
-
-//    public boolean getMusicPlaying() {
-//        return musicPlaying;
-//    }
-//
-//    public void setMusicPlaying(boolean musicPlaying) {
-//        this.musicPlaying = musicPlaying;
-//    }
 
     private void setBackingTrack() {
         if (world.newAudio()) {
