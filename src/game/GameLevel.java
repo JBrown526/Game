@@ -61,7 +61,7 @@ public abstract class GameLevel extends World {
         }
     }
 
-    public void pause(){
+    public void pause() {
         if (playing) {
             this.stop();
             System.out.println("Game paused");

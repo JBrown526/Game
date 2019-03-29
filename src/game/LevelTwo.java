@@ -17,7 +17,7 @@ public class LevelTwo extends GameLevel {
 
         for (int i = 0; i < 6; i++) {
             Spike spike = new Spike(this);
-            spike.setPosition(new Vec2(10*i + 5, -11.2f));
+            spike.setPosition(new Vec2(10 * i + 5, -11.2f));
             spike.addCollisionListener(super.getCollisionHandler());
         }
 

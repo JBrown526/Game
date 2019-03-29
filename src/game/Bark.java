@@ -8,7 +8,7 @@ public class Bark extends Walker {
     // ---------------------- FIELDS ----------------------
     private static final float BARK_SPEED = 15;
     private static final Shape shape = new PolygonShape(
-            -0.314f,0.747f, -0.023f,0.75f, 0.319f,0.405f, 0.316f,-0.405f, -0.035f,-0.747f, -0.314f,-0.753f);
+            -0.314f, 0.747f, -0.023f, 0.75f, 0.319f, 0.405f, 0.316f, -0.405f, -0.035f, -0.747f, -0.314f, -0.753f);
 
     private AttachedImage image;
 

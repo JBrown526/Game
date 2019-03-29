@@ -39,6 +39,9 @@ public class CollisionHandler implements CollisionListener {
         if (target instanceof Spike) {
             playerSpikeCollision();
         }
+        if (target instanceof TennisBall) {
+            playerTennisBallCollision(target);
+        }
     }
 
     private void playerPlatformCollision() {
@@ -48,8 +51,13 @@ public class CollisionHandler implements CollisionListener {
     }
 
     private void playerSpikeCollision() {
-        System.out.println("spike hit");
         player.updateHealth(SPIKE_DAMAGE);
+        System.out.println("spike hit");
+    }
+
+    private void playerTennisBallCollision(Body target) {
+        target.destroy();
+        System.out.println("bone collected");
     }
 
     // ---------------------- BARK EVENTS ----------------------
@@ -58,14 +66,13 @@ public class CollisionHandler implements CollisionListener {
         final Body bark = e.getOtherBody();
 
         if (target instanceof BreakablePlatform) {
-            System.out.println("It was super effective");
-            System.out.println("The platform fainted");
             target.destroy();
             bark.destroy();
-        }
-        else if (target instanceof Platform || target instanceof Spike) {
-            System.out.println("It wasn't very effective");
+            System.out.println("It was super effective");
+            System.out.println("The platform fainted");
+        } else if (target instanceof Platform || target instanceof Spike) {
             bark.destroy();
+            System.out.println("It wasn't very effective");
         }
 
     }
