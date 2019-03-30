@@ -52,6 +52,7 @@ public class CollisionHandler implements CollisionListener {
 
     private void playerSpikeCollision() {
         player.updateHealth(SPIKE_DAMAGE);
+        player.playSound("data/audio/yelp.wav");
         System.out.println("spike hit");
     }
 

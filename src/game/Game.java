@@ -24,6 +24,7 @@ public class Game {
     private JProgressBar healthProgressBar;
 
     private int lastLevelHealth;
+    private int lastLevelScore;
 
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
 
@@ -119,6 +120,7 @@ public class Game {
     // ---------------------- LEVELS ----------------------
     public void goNextLevel() {
         lastLevelHealth = world.getPlayer().getHealth();
+        lastLevelScore = world.getPlayer().getScore();
         currentLevel++;
         world.stop();
         world.removeStepListener(tracker);
@@ -148,6 +150,7 @@ public class Game {
 
         // setup player
         world.getPlayer().setHealth(lastLevelHealth);
+        world.getPlayer().setScore(lastLevelScore);
         view.setPlayer(world.getPlayer());
         tracker.setBody(world.getPlayer());
 

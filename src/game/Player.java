@@ -2,9 +2,12 @@ package game;
 
 import city.cs.engine.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -251,6 +254,17 @@ public class Player extends Walker {
         this.action = action;
         removeAllImages();
         addImage(images[getDirectionCode()][getActionCode()]);
+    }
+
+    // ---------------------- SOUND ----------------------
+
+    public void playSound(String fileName) {
+        try {
+            SoundClip sound = new SoundClip(fileName);
+            sound.play();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     // ---------------------- CHANGE LISTENER ----------------------

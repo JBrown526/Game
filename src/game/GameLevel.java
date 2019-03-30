@@ -48,17 +48,12 @@ public abstract class GameLevel extends World {
 
     public void addBark(Player.Direction dir) {
         Bark bark = new Bark(this, dir);
+        player.playSound("data/audio/bark.wav");
         // set position on player and offset to avoid collision
         bark.setPosition(new Vec2(
                 player.getPosition().x + ((dir == Player.Direction.LEFT) ? -0.5f : 0.5f),
                 player.getPosition().y)
         );
-        try {
-            SoundClip barkSound = new SoundClip("data/audio/bark.wav");
-            barkSound.play();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
     }
 
     public void pause() {
