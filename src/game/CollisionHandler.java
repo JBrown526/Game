@@ -47,19 +47,17 @@ public class CollisionHandler implements CollisionListener {
     private void playerPlatformCollision() {
         player.setInAir(false);
         player.updateImage(player.getMoving() ? Player.Action.RUN : Player.Action.SIT);
-        System.out.println("on ground");
     }
 
     private void playerSpikeCollision() {
         player.updateHealth(SPIKE_DAMAGE);
         player.playSound("data/audio/yelp.wav");
-        System.out.println("spike hit");
     }
 
     private void playerTennisBallCollision(Body target) {
         player.updateScore(1);
         target.destroy();
-        System.out.println("bone collected");
+        System.out.println("tennis ball collected");
     }
 
     // ---------------------- BARK EVENTS ----------------------
@@ -70,11 +68,10 @@ public class CollisionHandler implements CollisionListener {
         if (target instanceof BreakablePlatform) {
             target.destroy();
             bark.destroy();
-            System.out.println("It was super effective");
-            System.out.println("The platform fainted");
+            System.out.println("platform destroyed");
         } else if (target instanceof Platform || target instanceof Spike || target instanceof TennisBall) {
             bark.destroy();
-            System.out.println("It wasn't very effective");
+            System.out.println("bark destroyed");
         }
 
     }

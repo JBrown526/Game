@@ -6,6 +6,7 @@ import org.jbox2d.common.Vec2;
 public abstract class GameLevel extends World {
 
     // ---------------------- FIELDS ----------------------
+
     private Player player;
     private CollisionHandler collisionHandler;
     private boolean playing;

@@ -5,19 +5,22 @@ import city.cs.engine.StepListener;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
-public class Controller extends KeyAdapter implements StepListener {
+public class Controller extends KeyAdapter implements StepListener, Serializable {
 
     // ---------------------- FIELDS ----------------------
+    private static final long serialVersionUID = 1L;
+
     // Movement variables
     private static final float WALKING_SPEED = 4;
     private static final float JUMP_SPEED = 11;
     private static final int BARK_TIME = 40;
 
-    private GameLevel world;    // Current world
-    private Player player;      // Player to be controlled
-    private int stepSum;        // Sum of steps since barkTimer started
-    private boolean barking;    // Whether player is barking or not
+    private GameLevel world;
+    private transient Player player;
+    private int stepSum;
+    private boolean barking;
 
     // ---------------------- CONSTRUCTOR ----------------------
     public Controller(GameLevel world) {
@@ -50,10 +53,12 @@ public class Controller extends KeyAdapter implements StepListener {
     }
 
     private void bark() {
-        player.updateImage(Player.Action.BARK);
-        barking = true;
-        stepSum = 0;
-        world.addBark(player.getDirection());
+        if (!barking) {
+            player.updateImage(Player.Action.BARK);
+            barking = true;
+            stepSum = 0;
+            world.addBark(player.getDirection());
+        }
     }
 
     private void jump() {

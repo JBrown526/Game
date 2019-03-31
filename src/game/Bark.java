@@ -24,6 +24,6 @@ public class Bark extends Walker {
         } else {
             startWalking(BARK_SPEED);
         }
-        System.out.println("Player used bark");
+        System.out.println("bark");
     }
 }

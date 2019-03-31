@@ -6,6 +6,8 @@ public class ControlPanel {
     private JPanel mainPanel;
     private JButton resetButton;
     private JButton pauseButton;
+    private JButton loadButton;
+    private JButton saveButton;
     private JProgressBar healthProgressBar;
 
     private Player player;
@@ -15,6 +17,8 @@ public class ControlPanel {
         mainPanel.setFocusable(false);
         resetButton.setFocusable(false);
         pauseButton.setFocusable(false);
+        loadButton.setFocusable(false);
+        saveButton.setFocusable(false);
         healthProgressBar.setFocusable(false);
 
         healthProgressBar.setMinimum(Player.MIN_HEALTH);
@@ -25,6 +29,8 @@ public class ControlPanel {
 
         pauseButton.addActionListener(e -> game.getWorld().pause());
         resetButton.addActionListener(e -> game.resetLevel());
+
+        saveButton.addActionListener(e -> game.saveGame());
     }
 
     public JPanel getMainPanel() {

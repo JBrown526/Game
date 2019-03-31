@@ -161,6 +161,25 @@ public class Game {
         world.start();
     }
 
+    // ---------------------- SAVES ----------------------
+
+    public void saveGame() {
+        SaveWriter saveWriter = new SaveWriter(this);
+        saveWriter.writeSave();
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public int getLastLevelHealth() {
+        return lastLevelHealth;
+    }
+
+    public int getLastLevelScore() {
+        return lastLevelScore;
+    }
+
     // ---------------------- DEBUG ----------------------
 
     private void debug() {
