@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class PlayerScore extends JLabel implements ChangeListener {
 
-    private Player player;
+    private transient Player player;
 
     public PlayerScore(Game game) {
         this.player = game.getPlayer();

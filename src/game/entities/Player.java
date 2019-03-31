@@ -1,7 +1,6 @@
 package game.entities;
 
 import city.cs.engine.*;
-import game.levels.GameLevel;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -139,11 +138,11 @@ public class Player extends Walker {
     // ---------------------- DIRECTION ----------------------
 
     public int getDirectionIndex() {
-         return directionIndex;
+        return directionIndex;
     }
 
-    public void setDirectionIndex(int actionIndex) {
-        this.actionIndex = actionIndex;
+    public void setDirectionIndex(int directionIndex) {
+        this.directionIndex = directionIndex;
     }
 
     // ---------------------- IMAGES ----------------------

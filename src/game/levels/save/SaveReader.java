@@ -26,7 +26,7 @@ public class SaveReader {
             return values;
         } else {
             System.out.println("no save file found");
-            return null;
+            return new int[0];
         }
     }
 }

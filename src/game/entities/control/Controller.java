@@ -18,7 +18,7 @@ public class Controller extends KeyAdapter implements StepListener {
     private static final int BARK_TIME = 40;
 
     private GameLevel world;
-    private transient Player player;
+    private Player player;
     private int stepSum;
     private boolean barking;
 

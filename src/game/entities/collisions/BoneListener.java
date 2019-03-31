@@ -26,7 +26,7 @@ public class BoneListener implements CollisionListener {
         }
         if (e.getOtherBody() instanceof Bark) {
             e.getOtherBody().destroy();
-            System.out.println("It wasn't very effective");
+            System.out.println("bark destroyed");
         }
     }
 }

@@ -5,7 +5,7 @@ import org.jbox2d.common.Vec2;
 
 import java.awt.*;
 
-public class nullLevel extends GameLevel {
+public class NullLevel extends GameLevel {
 
     @Override
     public void populate(Game game) {

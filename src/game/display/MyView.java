@@ -7,7 +7,7 @@ import city.cs.engine.*;
 
 public class MyView extends UserView {
 
-    private Image backgroundImage;
+    private transient Image backgroundImage;
     private Color color;
     private Rectangle ground;
 

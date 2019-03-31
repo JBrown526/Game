@@ -3,7 +3,7 @@ package game.entities;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class Bark extends Walker implements StepListener{
+public class Bark extends Walker implements StepListener {
 
     // ---------------------- FIELDS ----------------------
     private static final float BARK_SPEED = 15;
@@ -43,6 +43,6 @@ public class Bark extends Walker implements StepListener{
 
     @Override
     public void postStep(StepEvent stepEvent) {
-
+        // unneeded method
     }
 }

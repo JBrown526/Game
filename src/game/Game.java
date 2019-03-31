@@ -86,7 +86,7 @@ public class Game {
     private void levelsSetup() {
         currentLevel = 1;
 
-        levels[0] = new nullLevel();
+        levels[0] = new NullLevel();
         levels[1] = new LevelOne();
         levels[2] = new LevelTwo();
         levels[3] = new LevelThree();
@@ -201,7 +201,7 @@ public class Game {
     public void loadGame() {
         SaveReader saveReader = new SaveReader();
         int[] save = saveReader.readSave();
-        if (save != null) {
+        if (save.length != 3) {
             currentLevel = save[0];
             lastLevelHealth = save[1];
             lastLevelScore = save[2];
