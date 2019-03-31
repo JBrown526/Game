@@ -1,10 +1,7 @@
 package game;
 
 import city.cs.engine.*;
-import game.display.ControlPanel;
-import game.display.MyView;
-import game.display.PlayerScore;
-import game.display.Tracker;
+import game.display.*;
 import game.entities.Player;
 import game.entities.control.Controller;
 import game.levels.*;
@@ -28,13 +25,14 @@ public class Game {
     private Controller controller;
     private DebugViewer debug;
     private Tracker tracker;
-    private int currentLevel;
     private SoundClip backingTrack;
     private String backingTrackFile;
     private JProgressBar healthProgressBar;
 
+    private int currentLevel;
     private int lastLevelHealth;
     private int lastLevelScore;
+    private boolean audioPlaying;
 
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
 
@@ -43,6 +41,7 @@ public class Game {
         backingTrackFile = "";
         lastLevelHealth = Player.MAX_HEALTH;
         lastLevelScore = 0;
+        audioPlaying = true;
 
         // Setup window and world
         levelsSetup();
@@ -72,10 +71,12 @@ public class Game {
         PlayerScore playerScore = new PlayerScore(this);
         view.add(playerScore);
 
-        ControlPanel menu = new ControlPanel(this);
-        window.add(menu.getMainPanel(), BorderLayout.NORTH);
+        ControlPanel gameMenu = new ControlPanel(this);
+        AudioPanel audioMenu = new AudioPanel(this);
+        window.add(gameMenu.getMainPanel(), BorderLayout.NORTH);
+        window.add(audioMenu.getMainPanel(), BorderLayout.SOUTH);
         window.add(view, BorderLayout.CENTER);
-        healthProgressBar = menu.getHealthProgressBar();
+        healthProgressBar = gameMenu.getHealthProgressBar();
 
         // Start world
         window.pack();
@@ -128,6 +129,22 @@ public class Game {
         }
     }
 
+    public void changeMusicVolume(int unmappedVolume) {
+        double mappedVolume = (unmappedVolume - 0d) / (100d - 0d) * (2.0d - 0.01d) + 0.01d;
+        backingTrack.setVolume(mappedVolume);
+        System.out.printf("music volume %.2f%%%n", (mappedVolume / 2.0d) * 100d);
+    }
+
+    public void toggleAudio() {
+        audioPlaying = !audioPlaying;
+        getPlayer().toggleAudio();
+        if (audioPlaying) {
+            backingTrack.resume();
+        } else {
+            backingTrack.pause();
+        }
+    }
+
     // ---------------------- LEVELS ----------------------
     public void goNextLevel() {
         lastLevelHealth = world.getPlayer().getHealth();
@@ -167,7 +184,7 @@ public class Game {
         setBackingTrack();
 
         // setup player
-        world.getPlayer().setHealth(lastLevelHealth);
+        world.getPlayer().setHealth(lastLevelHealth, healthProgressBar);
         world.getPlayer().setScore(lastLevelScore);
         tracker.setBody(world.getPlayer());
 

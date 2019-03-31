@@ -25,10 +25,12 @@ public class Player extends Walker {
 
     private int health;
     private int score;
-    private boolean inAir;
-    private boolean moving;
     private int directionIndex;
     private int actionIndex;
+    private double volume;
+    private boolean inAir;
+    private boolean moving;
+    private boolean audioPlaying;
 
     private List<ChangeListener> listeners;
     private JProgressBar healthProgressBar;
@@ -43,6 +45,8 @@ public class Player extends Walker {
         super(world, shape);
         this.healthProgressBar = healthProgressBar;
         health = 100;
+        volume = 1.0d;
+        audioPlaying = true;
         moving = false;
         inAir = false;
 
@@ -78,8 +82,9 @@ public class Player extends Walker {
         return health;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(int health, JProgressBar healthProgressBar) {
         this.health = health;
+        this.healthProgressBar = healthProgressBar;
         healthProgressBar.setValue(health);
         healthProgressBar.setString("Health:" + this.health + "/" + MAX_HEALTH);
     }
@@ -154,13 +159,24 @@ public class Player extends Walker {
     }
 
     // ---------------------- SOUND ----------------------
+    public void setVolume(int unmappedVolume) {
+        volume = (unmappedVolume - 0d) / (100d - 0d) * (2.0d - 0.01d) + 0.01d;
+        System.out.printf("sound effect volume %.2f%%%n", (volume / 2.0d) * 100d);
+    }
+
+    public void toggleAudio() {
+        audioPlaying = !audioPlaying;
+    }
 
     public void playSound(String fileName) {
-        try {
-            SoundClip sound = new SoundClip(fileName);
-            sound.play();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
+        if (audioPlaying) {
+            try {
+                SoundClip sound = new SoundClip(fileName);
+                sound.setVolume(volume);
+                sound.play();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
+            }
         }
     }
 

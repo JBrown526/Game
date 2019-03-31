@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="754" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <foreground color="-12500671"/>
+    </properties>
     <border type="none"/>
     <children>
       <hspacer id="41f9b">
@@ -21,12 +23,12 @@
           <text value="Reset"/>
         </properties>
       </component>
-      <component id="a8035" class="javax.swing.JButton" binding="pauseButton" default-binding="true">
+      <component id="a8035" class="javax.swing.JButton" binding="playPauseButton">
         <constraints>
           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Pause"/>
+          <text value="Play/Pause"/>
         </properties>
       </component>
       <vspacer id="3d9c">
@@ -50,7 +52,7 @@
       </component>
       <component id="5a0de" class="javax.swing.JButton" binding="loadButton">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Load"/>
@@ -58,7 +60,7 @@
       </component>
       <component id="348b2" class="javax.swing.JButton" binding="saveButton">
         <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Save"/>

@@ -3,6 +3,9 @@ package game.display;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+/**
+ * Tracker is an entity used to follow the movements of a body in the x-axis.
+ */
 public class Tracker implements StepListener {
 
     // ---------------------- FIELDS ----------------------
@@ -18,9 +21,14 @@ public class Tracker implements StepListener {
     // ---------------------- METHODS ----------------------
     @Override
     public void preStep(StepEvent e) {
-        // no need for any changes to view in pre step
+        // unneeded method
     }
 
+    /**
+     * This method updates the x position of the view.
+     *
+     * @param e The step event that causes the view to change every step of the simulation.
+     */
     @Override
     public void postStep(StepEvent e) {
         // reposition camera
@@ -30,5 +38,4 @@ public class Tracker implements StepListener {
     public void setBody(Body body) {
         this.body = body;
     }
-
 }

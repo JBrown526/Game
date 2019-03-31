@@ -5,6 +5,9 @@ import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
 import game.entities.*;
 
+/**
+ * CollisionHandler is the object responsible for managing most of the collisions between objects.
+ */
 public class CollisionHandler implements CollisionListener {
 
     // ---------------------- FIELDS ----------------------
@@ -18,6 +21,13 @@ public class CollisionHandler implements CollisionListener {
     }
 
     // ---------------------- METHODS ----------------------
+
+    /**
+     * This method splits up the {@link Player} and {@link Bark} collisions and divides them based on what each type
+     * of collision leads to happening.
+     *
+     * @param e The collision event being checked.
+     */
     @Override
     public void collide(CollisionEvent e) {
         // Player collisions
@@ -46,16 +56,19 @@ public class CollisionHandler implements CollisionListener {
     }
 
     private void playerPlatformCollision() {
+        // registers when the player is on the ground and updates their image based on their movement
         player.setInAir(false);
         player.updateImage(player.getMoving() ? 2 : 3);
     }
 
     private void playerSpikeCollision() {
+        // deals damage to the player
         player.updateHealth(SPIKE_DAMAGE);
         player.playSound("data/audio/entity_noises/yelp.wav");
     }
 
     private void playerTennisBallCollision(Body target) {
+        // updates the player's score and destroys the tennis ball
         player.updateScore(1);
         target.destroy();
         System.out.println("tennis ball collected");
@@ -67,13 +80,14 @@ public class CollisionHandler implements CollisionListener {
         final Body bark = e.getOtherBody();
 
         if (target instanceof BreakablePlatform) {
+            // destroys the breakable platform and bark
             target.destroy();
             bark.destroy();
             System.out.println("platform destroyed");
         } else if (target instanceof Platform || target instanceof Spike || target instanceof TennisBall) {
+            // destroys the bark
             bark.destroy();
             System.out.println("bark destroyed");
         }
-
     }
 }
