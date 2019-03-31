@@ -4,29 +4,26 @@ import city.cs.engine.*;
 import city.cs.engine.Shape;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BreakablePlatform extends Platform {
 
     // ---------------------- FIELDS ----------------------
-    public enum Biome {
-        FOREST("data/objects/vines.png"),
-        PLAINS("data/objects/trunk.png");
+    private static final String FOREST_FILE = "data/objects/vines.png";
+    private static final String PLAINS_FILE = "data/objects/trunk.png";
 
-        private final String imageFile;
-
-        Biome(String imageFile) {
-            this.imageFile = imageFile;
-        }
-
-        public String getImageFile() {
-            return imageFile;
-        }
-    }
+    private Map<String, String> biomes;
 
     // ---------------------- CONSTRUCTOR ----------------------
-    public BreakablePlatform(World world, float halfWidth, float halfHeight, float xPos, float yPos, Biome biome) {
+    public BreakablePlatform(World world, float halfWidth, float halfHeight, float xPos, float yPos, String biome) {
         super(world, new BoxShape(halfWidth, halfHeight), xPos, yPos);
-        addImage(new BodyImage(biome.getImageFile(), 2 * halfHeight));
+
+        biomes = new HashMap<>();
+        biomes.put("forest", FOREST_FILE);
+        biomes.put("plains", PLAINS_FILE);
+
+        addImage(new BodyImage(biomes.get(biome), 2 * halfHeight));
     }
 
     public BreakablePlatform(World world, Shape shape, float xPos, float yPos) {
