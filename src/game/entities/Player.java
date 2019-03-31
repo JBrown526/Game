@@ -49,13 +49,6 @@ public class Player extends Walker {
 
     // ---------------------- CONSTRUCTOR ----------------------
 
-    /**
-     * This method constructs the player object, setting the initial
-     * player stats and creating the array of images for display based
-     * off of the players current {@link Action} and {@link Direction}
-     *
-     * @param world the {@link GameLevel} the player is currently in
-     */
     public Player(World world, JProgressBar healthProgressBar) {
         // Initialise values
         super(world, shape);
@@ -102,13 +95,6 @@ public class Player extends Walker {
         healthProgressBar.setString("Health:" + this.health + "/" + MAX_HEALTH);
     }
 
-    /**
-     * This method updates the health of the character, and ensures
-     * it cannot exceed the maximum health of the character. If the
-     * health reaches zero, the player is destroyed
-     *
-     * @param deltaHealth the change in health to be applied
-     */
     public void updateHealth(int deltaHealth) {
         int newHealth = health + deltaHealth;
         // Ensures health cannot exceed MAX_HEALTH
@@ -143,72 +129,35 @@ public class Player extends Walker {
 
     // ---------------------- JUMPING ----------------------
 
-    /**
-     * This method returns whether the player is on a platform or not
-     *
-     * @return true if not on platform, false if on platform
-     */
     public boolean getInAir() {
         return inAir;
     }
 
-    /**
-     * This method sets whether or not the player is on a platform or not
-     *
-     * @param inAir true if not on a platform, false if on a platform
-     */
     public void setInAir(boolean inAir) {
         this.inAir = inAir;
     }
 
     // ---------------------- MOVING ----------------------
-
-    /**
-     * This method returns whether or not the player is moving
-     *
-     * @return true if the character is moving, false if otherwise
-     */
     public boolean getMoving() {
         return moving;
     }
 
-    /**
-     * This method sets whether or not the player is moving
-     *
-     * @param moving true if the player is moving, otherwise false
-     */
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
 
     // ---------------------- DIRECTION ----------------------
 
-    /**
-     * This method returns the current {@link Direction} of movement
-     *
-     * @return the direction the character is moving in
-     */
     public Direction getDirection() {
         return direction;
     }
 
-    /**
-     * This method sets the players {@link Direction} of movement
-     *
-     * @param direction the new direction of movement
-     */
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
     // Convert direction to index for image array
 
-    /**
-     * This method gets the numerical index of the {@link Direction} the player
-     * is moving in for the purposes of accessing the image array
-     *
-     * @return the index for the images associated with the direction
-     */
     private int getDirectionCode() {
         switch (direction) {
             case LEFT:
@@ -223,12 +172,6 @@ public class Player extends Walker {
     // ---------------------- ACTIONS ----------------------
     // Convert action to index for image array
 
-    /**
-     * This method gets the numerical index of the {@link Action} currently being
-     * performed for the purposes of accessing the image array
-     *
-     * @return the index for the images associated with the action
-     */
     private int getActionCode() {
         switch (action) {
             case BARK:
@@ -246,11 +189,6 @@ public class Player extends Walker {
 
     // ---------------------- IMAGES ----------------------
 
-    /**
-     * This method will update the image and action of the player character
-     *
-     * @param action the new {@link Action} the player will be performing
-     */
     public void updateImage(Action action) {
         this.action = action;
         removeAllImages();
