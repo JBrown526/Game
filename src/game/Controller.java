@@ -101,6 +101,7 @@ public class Controller extends KeyAdapter implements StepListener {
 
     @Override
     public void postStep(StepEvent e) {
+        // Unneeded
     }
 
     private void postBark() {

@@ -41,7 +41,6 @@ public class Game {
 
         view = new MyView(world, 1000, 480);
         world.populate(this);
-        view.setPlayer(getPlayer());
         final JFrame window = new JFrame("A Dog and his Bone");
 
         // Window settings
@@ -50,7 +49,6 @@ public class Game {
         window.setResizable(false);
 
         // Controllers
-        view.addMouseListener(new MouseHandler(view));
         controller = new Controller(world);
         window.addKeyListener(controller);
 
@@ -70,6 +68,8 @@ public class Game {
         // Start world
         window.pack();
         window.setVisible(true);
+        lastLevelHealth = Player.MAX_HEALTH;
+        lastLevelScore = 0;
         world.start();
     }
 
@@ -151,7 +151,6 @@ public class Game {
         // setup player
         world.getPlayer().setHealth(lastLevelHealth);
         world.getPlayer().setScore(lastLevelScore);
-        view.setPlayer(world.getPlayer());
         tracker.setBody(world.getPlayer());
 
         if (DEBUGGING) {

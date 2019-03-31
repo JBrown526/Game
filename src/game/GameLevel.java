@@ -1,12 +1,7 @@
 package game;
 
-import city.cs.engine.SoundClip;
 import city.cs.engine.World;
 import org.jbox2d.common.Vec2;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 
 public abstract class GameLevel extends World {
 

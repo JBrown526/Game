@@ -5,12 +5,8 @@ import javax.swing.ImageIcon;
 
 import city.cs.engine.*;
 
-/**
- * extended view
- */
 public class MyView extends UserView {
 
-    private Player player;
     private Image backgroundImage;
     private Color color;
     private Rectangle ground;
@@ -40,9 +36,4 @@ public class MyView extends UserView {
     public void setColor(Color color) {
         this.color = color;
     }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
 }

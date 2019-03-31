@@ -67,7 +67,7 @@ public class Player extends Walker {
 
         initialImageAssignment();
 
-        listeners = new LinkedList<ChangeListener>();
+        listeners = new LinkedList<>();
     }
 
     private static void populateImagesArray() {
