@@ -7,12 +7,10 @@ import game.entities.Player;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.Serializable;
 
-public class Controller extends KeyAdapter implements StepListener, Serializable {
+public class Controller extends KeyAdapter implements StepListener {
 
     // ---------------------- FIELDS ----------------------
-    private static final long serialVersionUID = 1L;
 
     // Movement variables
     private static final float WALKING_SPEED = 4;

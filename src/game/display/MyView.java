@@ -30,7 +30,6 @@ public class MyView extends UserView {
 
     public void setBackgroundImage(String filePath) {
         backgroundImage = new ImageIcon(filePath).getImage();
-        System.out.println("update backgroundImage");
     }
 
     public void setColor(Color color) {

@@ -1,36 +1,28 @@
 package game.levels;
 
 import game.Game;
-import game.entities.TennisBall;
 import org.jbox2d.common.Vec2;
 
 import java.awt.*;
 
-public class LevelOne extends GameLevel {
+public class nullLevel extends GameLevel {
 
-    // ---------------------- METHODS ----------------------
     @Override
     public void populate(Game game) {
         super.populate(game);
 
-        TennisBall ball = new TennisBall(this);
-        ball.setPosition(new Vec2(10, -10));
-        ball.addCollisionListener(super.getCollisionHandler());
-
         game.getView().setBackgroundImage("data/backgrounds/forest.png");
         game.getView().setColor(new Color(24, 48, 52));
-
-        System.out.println("level populated");
     }
 
     @Override
     public Vec2 startPosition() {
-        return new Vec2(0, -9);
+        return new Vec2(0, 0);
     }
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(20, -10);
+        return new Vec2(0, 0);
     }
 
     @Override

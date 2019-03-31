@@ -20,12 +20,10 @@ public class PlayerScore extends JLabel implements ChangeListener {
         setForeground(Color.black);
         setBackground(Color.gray);
         setFocusable(false);
-        System.out.println("scorecount");
     }
 
     @Override
     public void stateChanged(ChangeEvent e) {
         setText("Score: " + player.getScore());
-        System.out.println("scorecount update");
     }
 }

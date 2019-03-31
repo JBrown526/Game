@@ -3,7 +3,6 @@ package game.levels;
 import city.cs.engine.BoxShape;
 import game.*;
 import game.entities.BreakablePlatform;
-import game.entities.Platform;
 import game.entities.Spike;
 import org.jbox2d.common.Vec2;
 
@@ -13,9 +12,6 @@ public class LevelDebug extends GameLevel {
     @Override
     public void populate(Game game) {
         super.populate(game);
-
-        Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -12);
-        ground.addCollisionListener(super.getCollisionHandler());
 
         BreakablePlatform wall = new BreakablePlatform(this, new BoxShape(0.5f, 0.5f), -5, -8);
         wall.addCollisionListener(super.getCollisionHandler());
@@ -38,12 +34,7 @@ public class LevelDebug extends GameLevel {
     }
 
     @Override
-    public boolean newAudio() {
-        return true;
-    }
-
-    @Override
     public String backingTrackFile() {
-        return "data/audio/debug.wav";
+        return "data/audio/music/debug.wav";
     }
 }

@@ -30,6 +30,7 @@ public class Game {
     private Tracker tracker;
     private int currentLevel;
     private SoundClip backingTrack;
+    private String backingTrackFile;
     private JProgressBar healthProgressBar;
 
     private int lastLevelHealth;
@@ -39,6 +40,9 @@ public class Game {
 
     // ---------------------- CONSTRUCTOR ----------------------
     public Game() {
+        backingTrackFile = "";
+        lastLevelHealth = Player.MAX_HEALTH;
+        lastLevelScore = 0;
 
         // Setup window and world
         levelsSetup();
@@ -46,7 +50,6 @@ public class Game {
         world = levels[currentLevel];
         debug();
         setBackingTrack();
-        System.out.println("Level" + currentLevel);
 
         view = new MyView(world, 1000, 480);
         world.populate(this);
@@ -77,15 +80,13 @@ public class Game {
         // Start world
         window.pack();
         window.setVisible(true);
-        lastLevelHealth = Player.MAX_HEALTH;
-        lastLevelScore = 0;
         world.start();
     }
 
     private void levelsSetup() {
         currentLevel = 1;
 
-        levels[0] = new LevelDebug();
+        levels[0] = new nullLevel();
         levels[1] = new LevelOne();
         levels[2] = new LevelTwo();
         levels[3] = new LevelThree();
@@ -113,12 +114,13 @@ public class Game {
     // ---------------------- AUDIO ----------------------
 
     private void setBackingTrack() {
-        if (world.newAudio()) {
+        if (!backingTrackFile.equals(world.backingTrackFile())) {
+            backingTrackFile = world.backingTrackFile();
             if (backingTrack != null) {
                 backingTrack.stop();
             }
             try {
-                backingTrack = new SoundClip(world.backingTrackFile());
+                backingTrack = new SoundClip(backingTrackFile);
                 backingTrack.loop();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
@@ -130,6 +132,12 @@ public class Game {
     public void goNextLevel() {
         lastLevelHealth = world.getPlayer().getHealth();
         lastLevelScore = world.getPlayer().getScore();
+
+        if (DEBUGGING) {
+            lastLevelHealth = Player.MAX_HEALTH;
+            lastLevelScore = 0;
+        }
+
         currentLevel++;
         world.stop();
         world.removeStepListener(tracker);
@@ -141,6 +149,7 @@ public class Game {
     }
 
     public void resetLevel() {
+        System.out.println("reset level");
         world.stop();
         world.removeStepListener(tracker);
         world = null;
@@ -193,6 +202,10 @@ public class Game {
         SaveReader saveReader = new SaveReader();
         int[] save = saveReader.readSave();
         if (save != null) {
+            currentLevel = save[0];
+            lastLevelHealth = save[1];
+            lastLevelScore = save[2];
+            resetLevel();
             System.out.println("game loaded (level: " + save[0] + ", health: " + save[1] + ", score: " + save[2] + ")");
         }
     }
@@ -202,7 +215,7 @@ public class Game {
     private void debug() {
         if (DEBUGGING) {
             currentLevel = 0;
-            world = levels[currentLevel];
+            world = new LevelDebug();
             debug = new DebugViewer(world, 600, 600);
         }
     }

@@ -52,7 +52,7 @@ public class CollisionHandler implements CollisionListener {
 
     private void playerSpikeCollision() {
         player.updateHealth(SPIKE_DAMAGE);
-        player.playSound("data/audio/yelp.wav");
+        player.playSound("data/audio/entity_noises/yelp.wav");
     }
 
     private void playerTennisBallCollision(Body target) {
