@@ -180,6 +180,14 @@ public class Game {
         return lastLevelScore;
     }
 
+    public void loadGame() {
+        SaveReader saveReader = new SaveReader();
+        int[] save = saveReader.readSave();
+        if (save != null) {
+            System.out.println("game loaded (level: " + save[0] + ", health: " + save[1] + ", score: " + save[2] + ")");
+        }
+    }
+
     // ---------------------- DEBUG ----------------------
 
     private void debug() {

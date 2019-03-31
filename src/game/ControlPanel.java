@@ -29,7 +29,7 @@ public class ControlPanel {
 
         pauseButton.addActionListener(e -> game.getWorld().pause());
         resetButton.addActionListener(e -> game.resetLevel());
-
+        loadButton.addActionListener(e -> game.loadGame());
         saveButton.addActionListener(e -> game.saveGame());
     }
 
