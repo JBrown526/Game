@@ -1,4 +1,4 @@
-package game;
+package game.save_elements;
 
 import java.io.*;
 

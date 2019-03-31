@@ -1,7 +1,9 @@
-package game;
+package game.entities.control;
 
 import city.cs.engine.StepEvent;
 import city.cs.engine.StepListener;
+import game.levels.GameLevel;
+import game.entities.Player;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

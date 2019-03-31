@@ -1,7 +1,10 @@
-package game;
+package game.entities.collisions;
 
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
+import game.Game;
+import game.entities.Bark;
+import game.entities.Player;
 
 public class BoneListener implements CollisionListener {
 

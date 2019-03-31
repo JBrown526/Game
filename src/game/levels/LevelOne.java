@@ -1,24 +1,29 @@
-package game;
+package game.levels;
 
 import city.cs.engine.BoxShape;
+import game.Game;
+import game.entities.Platform;
+import game.entities.TennisBall;
 import org.jbox2d.common.Vec2;
 
-public class LevelDebug extends GameLevel {
+import java.awt.*;
+
+public class LevelOne extends GameLevel {
 
     // ---------------------- METHODS ----------------------
     @Override
     public void populate(Game game) {
         super.populate(game);
 
-        Platform ground = new Platform(this, new BoxShape(11, 0.5f), 0, -12);
+        Platform ground = new Platform(this, new BoxShape(70, 0.5f), 0, -12);
         ground.addCollisionListener(super.getCollisionHandler());
 
-        BreakablePlatform wall = new BreakablePlatform(this, new BoxShape(0.5f, 0.5f), -5, -8);
-        wall.addCollisionListener(super.getCollisionHandler());
+        TennisBall ball = new TennisBall(this);
+        ball.setPosition(new Vec2(10, -10));
+        ball.addCollisionListener(super.getCollisionHandler());
 
-        Spike spike = new Spike(this);
-        spike.setPosition(new Vec2(-8, -11.3f));
-        spike.addCollisionListener(super.getCollisionHandler());
+        game.getView().setBackgroundImage("data/backgrounds/forest.png");
+        game.getView().setColor(new Color(24, 48, 52));
 
         System.out.println("level populated");
     }
@@ -30,7 +35,7 @@ public class LevelDebug extends GameLevel {
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(8, -8);
+        return new Vec2(20, -10);
     }
 
     @Override
@@ -40,6 +45,6 @@ public class LevelDebug extends GameLevel {
 
     @Override
     public String backingTrackFile() {
-        return "data/audio/debug.wav";
+        return "data/audio/forest.wav";
     }
 }

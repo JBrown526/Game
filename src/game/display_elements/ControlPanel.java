@@ -1,4 +1,7 @@
-package game;
+package game.display_elements;
+
+import game.Game;
+import game.entities.Player;
 
 import javax.swing.*;
 

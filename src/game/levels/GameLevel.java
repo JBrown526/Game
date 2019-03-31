@@ -1,6 +1,12 @@
-package game;
+package game.levels;
 
 import city.cs.engine.World;
+import game.Game;
+import game.entities.Bark;
+import game.entities.Bone;
+import game.entities.Player;
+import game.entities.collisions.BoneListener;
+import game.entities.collisions.CollisionHandler;
 import org.jbox2d.common.Vec2;
 
 public abstract class GameLevel extends World {

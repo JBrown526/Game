@@ -1,6 +1,7 @@
-package game;
+package game.entities;
 
 import city.cs.engine.*;
+import game.levels.GameLevel;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -34,12 +35,12 @@ public class Player extends Walker {
     private JProgressBar healthProgressBar;
 
     // Potential directions
-    enum Direction {
+    public enum Direction {
         LEFT, RIGHT
     }
 
     // Potential actions
-    enum Action {
+    public enum Action {
         BARK, JUMP, RUN, SIT
     }
 

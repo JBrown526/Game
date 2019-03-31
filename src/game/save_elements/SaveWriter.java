@@ -1,4 +1,6 @@
-package game;
+package game.save_elements;
+
+import game.Game;
 
 import java.io.File;
 import java.io.FileWriter;

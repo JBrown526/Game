@@ -1,8 +1,9 @@
-package game;
+package game.entities.collisions;
 
 import city.cs.engine.Body;
 import city.cs.engine.CollisionEvent;
 import city.cs.engine.CollisionListener;
+import game.entities.*;
 
 public class CollisionHandler implements CollisionListener {
 

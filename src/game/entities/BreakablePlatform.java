@@ -1,4 +1,4 @@
-package game;
+package game.entities;
 
 import city.cs.engine.*;
 import city.cs.engine.Shape;
@@ -8,7 +8,7 @@ import java.awt.*;
 public class BreakablePlatform extends Platform {
 
     // ---------------------- FIELDS ----------------------
-    enum Biome {
+    public enum Biome {
         FOREST("data/objects/vines.png"),
         PLAINS("data/objects/trunk.png");
 

@@ -1,4 +1,4 @@
-package game;
+package game.display_elements;
 
 import java.awt.*;
 import javax.swing.ImageIcon;

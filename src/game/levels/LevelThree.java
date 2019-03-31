@@ -1,6 +1,9 @@
-package game;
+package game.levels;
 
 import city.cs.engine.BoxShape;
+import game.entities.BreakablePlatform;
+import game.Game;
+import game.entities.Platform;
 import org.jbox2d.common.Vec2;
 
 public class LevelThree extends GameLevel {
