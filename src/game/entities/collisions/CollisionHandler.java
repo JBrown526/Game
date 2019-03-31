@@ -47,7 +47,7 @@ public class CollisionHandler implements CollisionListener {
 
     private void playerPlatformCollision() {
         player.setInAir(false);
-        player.updateImage(player.getMoving() ? Player.Action.RUN : Player.Action.SIT);
+        player.updateImage(player.getMoving() ? 2 : 3);
     }
 
     private void playerSpikeCollision() {

@@ -15,12 +15,12 @@ public class Bark extends Walker implements StepListener{
     private int stepSum = 0;
 
     // ---------------------- CONSTRUCTOR ----------------------
-    public Bark(World world, Player.Direction dir) {
+    public Bark(World world, int dirIndex) {
         super(world, shape);
         image = new AttachedImage(this, new BodyImage("data/objects/soundWave.png", 1.5f), 1, 0, new Vec2(0, 0));
         setGravityScale(0);
         // Direction
-        if (dir == Player.Direction.LEFT) {
+        if (dirIndex == 0) {
             image.flipHorizontal();
             startWalking(-BARK_SPEED);
         } else {

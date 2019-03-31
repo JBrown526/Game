@@ -46,32 +46,32 @@ public class Controller extends KeyAdapter implements StepListener {
         } else if (code == KeyEvent.VK_W) {
             jump();
         } else if (code == KeyEvent.VK_A) {
-            move(Player.Direction.LEFT);
+            move(0);
         } else if (code == KeyEvent.VK_D) {
-            move(Player.Direction.RIGHT);
+            move(1);
         }
     }
 
     private void bark() {
         if (!barking) {
-            player.updateImage(Player.Action.BARK);
+            player.updateImage(0);
             barking = true;
             stepSum = 0;
-            world.addBark(player.getDirection());
+            world.addBark(player.getDirectionIndex());
         }
     }
 
     private void jump() {
-        player.updateImage(Player.Action.JUMP);
+        player.updateImage(1);
         player.setInAir(true);
         player.jump(JUMP_SPEED);
     }
 
-    private void move(Player.Direction dir) {
+    private void move(int dirIndex) {
         player.setMoving(true);
-        player.setDirection(dir);
-        player.updateImage(player.getInAir() ? Player.Action.JUMP : Player.Action.RUN);
-        player.startWalking((dir == Player.Direction.LEFT ? -1 : 1) * WALKING_SPEED);
+        player.setDirectionIndex(dirIndex);
+        player.updateImage(player.getInAir() ? 1 : 2);
+        player.startWalking((dirIndex == 0 ? -1 : 1) * WALKING_SPEED);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class Controller extends KeyAdapter implements StepListener {
     }
 
     private void stopMove() {
-        player.updateImage(player.getInAir() ? Player.Action.JUMP : Player.Action.SIT);
+        player.updateImage(player.getInAir() ? 1 : 3);
         player.setMoving(false);
         player.stopWalking();
     }
@@ -111,11 +111,11 @@ public class Controller extends KeyAdapter implements StepListener {
 
     private void postBark() {
         if (player.getInAir()) {
-            player.updateImage(Player.Action.JUMP);
+            player.updateImage(1);
         } else if (player.getMoving()) {
-            player.updateImage(Player.Action.RUN);
+            player.updateImage(2);
         } else {
-            player.updateImage(Player.Action.SIT);
+            player.updateImage(3);
         }
         barking = false;
     }

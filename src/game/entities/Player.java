@@ -28,21 +28,11 @@ public class Player extends Walker {
     private int score;
     private boolean inAir;
     private boolean moving;
-    private Direction direction;
-    private Action action;
+    private int directionIndex;
+    private int actionIndex;
 
     private List<ChangeListener> listeners;
     private JProgressBar healthProgressBar;
-
-    // Potential directions
-    public enum Direction {
-        LEFT, RIGHT
-    }
-
-    // Potential actions
-    public enum Action {
-        BARK, JUMP, RUN, SIT
-    }
 
     // Image array [direction][action]
     private static final BodyImage[][] images = new BodyImage[2][4];
@@ -76,9 +66,9 @@ public class Player extends Walker {
     }
 
     private void initialImageAssignment() {
-        action = Action.SIT;
-        direction = Direction.RIGHT;
-        addImage(images[getDirectionCode()][getActionCode()]);
+        actionIndex = 3;
+        directionIndex = 1;
+        addImage(images[directionIndex][actionIndex]);
         this.setClipped(true);
     }
 
@@ -148,51 +138,20 @@ public class Player extends Walker {
 
     // ---------------------- DIRECTION ----------------------
 
-    public Direction getDirection() {
-        return direction;
+    public int getDirectionIndex() {
+         return directionIndex;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    // Convert direction to index for image array
-
-    private int getDirectionCode() {
-        switch (direction) {
-            case LEFT:
-                return 0;
-            case RIGHT:
-                return 1;
-            default:
-                return -1;
-        }
-    }
-
-    // ---------------------- ACTIONS ----------------------
-    // Convert action to index for image array
-
-    private int getActionCode() {
-        switch (action) {
-            case BARK:
-                return 0;
-            case JUMP:
-                return 1;
-            case RUN:
-                return 2;
-            case SIT:
-                return 3;
-            default:
-                return -1;
-        }
+    public void setDirectionIndex(int actionIndex) {
+        this.actionIndex = actionIndex;
     }
 
     // ---------------------- IMAGES ----------------------
 
-    public void updateImage(Action action) {
-        this.action = action;
+    public void updateImage(int actionIndex) {
+        this.actionIndex = actionIndex;
         removeAllImages();
-        addImage(images[getDirectionCode()][getActionCode()]);
+        addImage(images[directionIndex][actionIndex]);
     }
 
     // ---------------------- SOUND ----------------------

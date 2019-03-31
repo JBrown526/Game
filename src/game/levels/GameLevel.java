@@ -55,12 +55,12 @@ public abstract class GameLevel extends World {
         return collisionHandler;
     }
 
-    public void addBark(Player.Direction dir) {
-        Bark bark = new Bark(this, dir);
+    public void addBark(int dirIndex) {
+        Bark bark = new Bark(this, dirIndex);
         player.playSound("data/audio/entity_noises/bark.wav");
         // set position on player and offset to avoid collision
         bark.setPosition(new Vec2(
-                player.getPosition().x + ((dir == Player.Direction.LEFT) ? -0.5f : 0.5f),
+                player.getPosition().x + ((dirIndex == 0) ? -0.5f : 0.5f),
                 player.getPosition().y)
         );
     }
