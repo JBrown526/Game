@@ -143,6 +143,7 @@ public class Player extends Walker {
      */
     public void updateScore(int deltaScore) {
         score += deltaScore;
+        System.out.println("Score: " + score);
         changed();
     }
 
@@ -242,5 +243,4 @@ public class Player extends Walker {
             l.stateChanged(e);
         }
     }
-
 }

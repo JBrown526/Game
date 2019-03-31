@@ -31,6 +31,7 @@ public class Game {
     private SoundClip backingTrack;
     private String backingTrackFile;
     private JProgressBar healthProgressBar;
+    private PlayerScore playerScore;
 
     private int currentLevel;
     private int lastLevelHealth;
@@ -76,7 +77,7 @@ public class Game {
         world.addStepListener(controller);
         world.addStepListener(tracker);
 
-        PlayerScore playerScore = new PlayerScore(this);
+        playerScore = new PlayerScore(this);
         view.add(playerScore);
 
         ControlPanel gameMenu = new ControlPanel(this);
@@ -225,6 +226,11 @@ public class Game {
         world.addStepListener(tracker);
         world.addStepListener(controller);
         world.start();
+
+        // refresh playerScore
+        view.remove(playerScore);
+        playerScore = new PlayerScore(this);
+        view.add(playerScore);
     }
 
     // ---------------------- SAVES ----------------------

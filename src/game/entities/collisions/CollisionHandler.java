@@ -72,7 +72,6 @@ public class CollisionHandler implements CollisionListener {
         player.updateScore(1);
         player.playSound("data/audio/entity_noises/squeak.wav");
         target.destroy();
-        System.out.println("tennis ball collected");
     }
 
     // ---------------------- BARK EVENTS ----------------------
