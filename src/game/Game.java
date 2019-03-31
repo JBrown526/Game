@@ -144,6 +144,7 @@ public class Game {
 
     /**
      * Changes the volume of the music, takes readings from 0-100 from the sliders and converts them to 0.01 to 2.0.
+     *
      * @param unmappedVolume
      */
     public void changeMusicVolume(int unmappedVolume) {
