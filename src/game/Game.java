@@ -1,15 +1,15 @@
 package game;
 
 import city.cs.engine.*;
-import game.display_elements.ControlPanel;
-import game.display_elements.MyView;
-import game.display_elements.PlayerScore;
-import game.display_elements.Tracker;
+import game.display.ControlPanel;
+import game.display.MyView;
+import game.display.PlayerScore;
+import game.display.Tracker;
 import game.entities.Player;
 import game.entities.control.Controller;
 import game.levels.*;
-import game.save_elements.SaveReader;
-import game.save_elements.SaveWriter;
+import game.levels.save.SaveReader;
+import game.levels.save.SaveWriter;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
