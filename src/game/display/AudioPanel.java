@@ -15,8 +15,6 @@ public class AudioPanel {
     private JLabel musicLabel;
     private JLabel soundEffectLabel;
 
-    private Game game;
-
     /**
      * Constructs the AudioPanel, setting all elements as non focusable and adding listeners to the button and sliders.
      *
@@ -25,7 +23,9 @@ public class AudioPanel {
     public AudioPanel(Game game) {
         setElementFocus();
 
-        addInterfaceListeners();
+        playPauseButton.addActionListener(e -> game.toggleAudio());
+        musicSlider.addChangeListener(e -> game.changeMusicVolume(musicSlider.getValue()));
+        soundEffectSlider.addChangeListener(e -> game.getPlayer().setVolume(soundEffectSlider.getValue()));
     }
 
     public JPanel getMainPanel() {
@@ -39,11 +39,5 @@ public class AudioPanel {
         musicSlider.setFocusable(false);
         soundEffectLabel.setFocusable(false);
         musicLabel.setFocusable(false);
-    }
-
-    private void addInterfaceListeners() {
-        playPauseButton.addActionListener(e -> game.toggleAudio());
-        musicSlider.addChangeListener(e -> game.changeMusicVolume(musicSlider.getValue()));
-        soundEffectSlider.addChangeListener(e -> game.getPlayer().setVolume(soundEffectSlider.getValue()));
     }
 }
