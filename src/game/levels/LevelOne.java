@@ -22,8 +22,8 @@ public class LevelOne extends GameLevel {
         ball.setPosition(new Vec2(10, -5));
         ball.addCollisionListener(super.getCollisionHandler());
 
-        game.getView().setBackgroundImage("data/backgrounds/forest.png");
-        game.getView().setColor(new Color(24, 48, 52));
+        getGame().getView().setBackgroundImage("data/backgrounds/forest.png");
+        getGame().getView().setColor(getColors().get("forest"));
 
         System.out.println("level populated");
     }

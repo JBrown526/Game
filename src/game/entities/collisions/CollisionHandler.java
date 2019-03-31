@@ -82,8 +82,9 @@ public class CollisionHandler implements CollisionListener {
 
         if (target instanceof BreakablePlatform) {
             // destroys the breakable platform and bark
-            target.destroy();
+            target.removeAllImages();
             bark.destroy();
+            target.destroy();
             System.out.println("platform destroyed");
         } else if (target instanceof Platform || target instanceof Spike || target instanceof TennisBall) {
             // destroys the bark

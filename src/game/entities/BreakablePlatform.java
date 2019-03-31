@@ -22,12 +22,12 @@ public class BreakablePlatform extends Platform {
     /**
      * This constructor is for when there is an image associated with the biome that can be accessed.
      *
-     * @param world The current level.
-     * @param halfWidth Half the width of the platform.
+     * @param world      The current level.
+     * @param halfWidth  Half the width of the platform.
      * @param halfHeight Half the height of the platform.
-     * @param xPos The x position of the platform's centre.
-     * @param yPos The y position of the platform's centre.
-     * @param biome The biome of the current level.
+     * @param xPos       The x position of the platform's centre.
+     * @param yPos       The y position of the platform's centre.
+     * @param biome      The biome of the current level.
      */
     public BreakablePlatform(World world, float halfWidth, float halfHeight, float xPos, float yPos, String biome) {
         super(world, new BoxShape(halfWidth, halfHeight), xPos, yPos);
@@ -41,13 +41,12 @@ public class BreakablePlatform extends Platform {
     }
 
     /**
-     *
      * This constructor is for when no image is available for the biome.
      *
      * @param world The current level.
      * @param shape The shape of the platform.
-     * @param xPos xPos The x position of the platform's centre.
-     * @param yPos The y position of the platform's centre.
+     * @param xPos  xPos The x position of the platform's centre.
+     * @param yPos  The y position of the platform's centre.
      */
     public BreakablePlatform(World world, Shape shape, float xPos, float yPos) {
         super(world, shape, xPos, yPos);

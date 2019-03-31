@@ -20,7 +20,7 @@ import java.io.IOException;
 public class Game {
 
     // ---------------------- FIELDS ----------------------
-    private static final int LEVEL_COUNT = 3;
+    private static final int LEVEL_COUNT = 4;
     private static final boolean DEBUGGING = false;
 
     private GameLevel world;
@@ -99,6 +99,7 @@ public class Game {
         levels[1] = new LevelOne();
         levels[2] = new LevelTwo();
         levels[3] = new LevelThree();
+        levels[4] = new LevelFour();
     }
 
     // ---------------------- METHODS ----------------------
@@ -254,7 +255,7 @@ public class Game {
         for (int num : save) {
             System.out.println(num);
         }
-        if (save.length != 3) {
+        if (save.length == 3) {
             currentLevel = save[0];
             lastLevelHealth = save[1];
             lastLevelScore = save[2];

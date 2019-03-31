@@ -1,7 +1,10 @@
 package game.levels;
 
+import city.cs.engine.BoxShape;
 import game.entities.BreakablePlatform;
 import game.Game;
+import game.entities.Platform;
+import game.entities.Spike;
 import org.jbox2d.common.Vec2;
 
 public class LevelThree extends GameLevel {
@@ -11,10 +14,25 @@ public class LevelThree extends GameLevel {
     public void populate(Game game) {
         super.populate(game);
 
-        for (int i = 0; i < 6; i++) {
-            BreakablePlatform bp = new BreakablePlatform(this, 0.5f, 5, i * 8 + 5, -9.5f, "forest");
-            bp.addCollisionListener(super.getCollisionHandler());
-        }
+        Platform platform = new Platform(this, new BoxShape(13, 0.5f), 10.5f, -4);
+        platform.addCollisionListener(super.getCollisionHandler());
+        platform.setFillColor(getColors().get("plains"));
+        platform.setLineColor(getColors().get("forest"));
+
+        Platform wall = new Platform(this, new BoxShape(0.5f, 5), -3, -6.5f);
+        wall.addCollisionListener(super.getCollisionHandler());
+        wall.setFillColor(getColors().get("plains"));
+        wall.setLineColor(getColors().get("forest"));
+
+        BreakablePlatform obstacle1 = new BreakablePlatform(this, 1, 3.5f, 6, -7.5f, "forest");
+        obstacle1.addCollisionListener(super.getCollisionHandler());
+
+        Spike spike = new Spike(this);
+        spike.setPosition(new Vec2(8, -11));
+        spike.addCollisionListener(super.getCollisionHandler());
+
+        getGame().getView().setBackgroundImage("data/backgrounds/forest.png");
+        getGame().getView().setColor(getColors().get("forest"));
 
         System.out.println("level populated");
     }
@@ -26,11 +44,11 @@ public class LevelThree extends GameLevel {
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(55, -8);
+        return new Vec2(13, -10);
     }
 
     @Override
     public String backingTrackFile() {
-        return "data/audio/music/plains.wav";
+        return "data/audio/music/forest.wav";
     }
 }

@@ -22,6 +22,7 @@ public abstract class GameLevel extends World {
 
     // ---------------------- FIELDS ----------------------
 
+    private Game game;
     private Player player;
     private CollisionHandler collisionHandler;
     private boolean playing;
@@ -36,6 +37,7 @@ public abstract class GameLevel extends World {
      * @param game The main {@link Game} object.
      */
     public void populate(Game game) {
+        this.game = game;
         if (game.getPlayer() == null) {
             player = new Player(this, game.getHealthProgressBar());
         } else {
@@ -80,6 +82,10 @@ public abstract class GameLevel extends World {
     private void makeGround() {
         Platform ground = new Platform(this, new BoxShape(200, 0.5f), 0, -12);
         ground.addCollisionListener(getCollisionHandler());
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     public Player getPlayer() {

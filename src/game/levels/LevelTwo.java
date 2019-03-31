@@ -35,9 +35,8 @@ public class LevelTwo extends GameLevel {
         ball1.setPosition(new Vec2(12, 0));
         ball1.addCollisionListener(super.getCollisionHandler());
 
-
-        game.getView().setBackgroundImage("data/backgrounds/forest.png");
-        game.getView().setColor(getColors().get("forest"));
+        getGame().getView().setBackgroundImage("data/backgrounds/forest.png");
+        getGame().getView().setColor(getColors().get("forest"));
 
         System.out.println("level populated");
     }
@@ -49,7 +48,7 @@ public class LevelTwo extends GameLevel {
 
     @Override
     public Vec2 bonePosition() {
-        return new Vec2(50, -10);
+        return new Vec2(30, -10);
     }
 
     @Override
