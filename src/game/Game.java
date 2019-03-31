@@ -14,6 +14,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * Main runnable class of the program.
+ */
 public class Game {
 
     // ---------------------- FIELDS ----------------------
@@ -37,7 +40,12 @@ public class Game {
     private GameLevel[] levels = new GameLevel[LEVEL_COUNT + 1];
 
     // ---------------------- CONSTRUCTOR ----------------------
+
+    /**
+     * Construct the game, initialising the world, making the windows and starting the game.
+     */
     public Game() {
+        // Initialise values
         backingTrackFile = "";
         lastLevelHealth = Player.MAX_HEALTH;
         lastLevelScore = 0;
@@ -114,6 +122,9 @@ public class Game {
 
     // ---------------------- AUDIO ----------------------
 
+    /**
+     * Change the music for the game, first checking that the same song isn't about to replace an old one.
+     */
     private void setBackingTrack() {
         if (!backingTrackFile.equals(world.backingTrackFile())) {
             backingTrackFile = world.backingTrackFile();
@@ -129,12 +140,19 @@ public class Game {
         }
     }
 
+    /**
+     * Changes the volume of the music, takes readings from 0-100 from the sliders and converts them to 0.01 to 2.0.
+     * @param unmappedVolume
+     */
     public void changeMusicVolume(int unmappedVolume) {
         double mappedVolume = (unmappedVolume - 0d) / (100d - 0d) * (2.0d - 0.01d) + 0.01d;
         backingTrack.setVolume(mappedVolume);
         System.out.printf("music volume %.2f%%%n", (mappedVolume / 2.0d) * 100d);
     }
 
+    /**
+     * Toggles all sound on and off.
+     */
     public void toggleAudio() {
         audioPlaying = !audioPlaying;
         getPlayer().toggleAudio();
@@ -146,6 +164,10 @@ public class Game {
     }
 
     // ---------------------- LEVELS ----------------------
+
+    /**
+     * Move on to the next level.
+     */
     public void goNextLevel() {
         lastLevelHealth = world.getPlayer().getHealth();
         lastLevelScore = world.getPlayer().getScore();
@@ -165,6 +187,9 @@ public class Game {
         }
     }
 
+    /**
+     * Reset the current game level.
+     */
     public void resetLevel() {
         System.out.println("reset level");
         world.stop();
@@ -173,6 +198,9 @@ public class Game {
         levelStart();
     }
 
+    /**
+     * Start a level;
+     */
     private void levelStart() {
         System.out.println("Level " + currentLevel);
 
@@ -215,6 +243,9 @@ public class Game {
         return lastLevelScore;
     }
 
+    /**
+     * Load the save state into a level.
+     */
     public void loadGame() {
         SaveReader saveReader = new SaveReader();
         int[] save = saveReader.readSave();

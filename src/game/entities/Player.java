@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * The Player object is the main entity in the game, and the one used by the player in the game
+ */
 public class Player extends Walker {
 
     // ---------------------- FIELDS ----------------------
@@ -25,7 +27,13 @@ public class Player extends Walker {
 
     private int health;
     private int score;
+    /**
+     * The index of the image for the direction of travel, 0 is for left and 1 is for right.
+     */
     private int directionIndex;
+    /**
+     * The index of the image for the action being performed, 0 is for barking, 1 for jumping, 2 for running and 3 for sitting.
+     */
     private int actionIndex;
     private double volume;
     private boolean inAir;
@@ -40,6 +48,13 @@ public class Player extends Walker {
 
     // ---------------------- CONSTRUCTOR ----------------------
 
+    /**
+     * The Player constructor initialises some base values, as well as populating the array of possible images
+     * and setting the first one.
+     *
+     * @param world             The current level.
+     * @param healthProgressBar The health bar.
+     */
     public Player(World world, JProgressBar healthProgressBar) {
         // Initialise values
         super(world, shape);
@@ -89,6 +104,11 @@ public class Player extends Walker {
         healthProgressBar.setString("Health:" + this.health + "/" + MAX_HEALTH);
     }
 
+    /**
+     * Sets the player health to a new value whilst ensuring it does not go above the player's MAX_HEALTH.
+     *
+     * @param deltaHealth The difference in health.
+     */
     public void updateHealth(int deltaHealth) {
         int newHealth = health + deltaHealth;
         // Ensures health cannot exceed MAX_HEALTH
@@ -116,6 +136,11 @@ public class Player extends Walker {
         changed();
     }
 
+    /**
+     * Sets the players score to a new value based on the difference provided.
+     *
+     * @param deltaScore The difference in score.
+     */
     public void updateScore(int deltaScore) {
         score += deltaScore;
         changed();
@@ -132,6 +157,7 @@ public class Player extends Walker {
     }
 
     // ---------------------- MOVING ----------------------
+
     public boolean getMoving() {
         return moving;
     }
@@ -152,6 +178,11 @@ public class Player extends Walker {
 
     // ---------------------- IMAGES ----------------------
 
+    /**
+     * Updates the image being displayed based on a new action.
+     *
+     * @param actionIndex The index of the action in the image array.
+     */
     public void updateImage(int actionIndex) {
         this.actionIndex = actionIndex;
         removeAllImages();
@@ -159,15 +190,30 @@ public class Player extends Walker {
     }
 
     // ---------------------- SOUND ----------------------
+
+    /**
+     * Sets the volume of the sound effects. It takes unmapped readings from 0 to 100 and converts them from 0.01 to
+     * 2.0 for the volume.
+     *
+     * @param unmappedVolume The unmapped value from the slider before it is transformed into a value for the volume changer.
+     */
     public void setVolume(int unmappedVolume) {
         volume = (unmappedVolume - 0d) / (100d - 0d) * (2.0d - 0.01d) + 0.01d;
         System.out.printf("sound effect volume %.2f%%%n", (volume / 2.0d) * 100d);
     }
 
+    /**
+     * Toggles audio on and off.
+     */
     public void toggleAudio() {
         audioPlaying = !audioPlaying;
     }
 
+    /**
+     * Plays a sound effect for it's full length if audio is toggled on.
+     *
+     * @param fileName The filepath for the audio sample.
+     */
     public void playSound(String fileName) {
         if (audioPlaying) {
             try {

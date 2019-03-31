@@ -52,7 +52,7 @@ public class Bark extends Walker implements StepListener {
     /**
      * This method governs the amount of time a bark will propagate through the level before it destroys itself.
      *
-     * @param stepEvent
+     * @param stepEvent The step event counting till it's time to destroy the bark.
      */
     @Override
     public void preStep(StepEvent stepEvent) {

@@ -2,6 +2,9 @@ package game.entities;
 
 import city.cs.engine.*;
 
+/**
+ * The Spike class is an object that when collided with causes damage.
+ */
 public class Spike extends StaticBody {
 
     // ---------------------- FIELDS ----------------------

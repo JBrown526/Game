@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Save writer writes level data to a file.
+ */
 public class SaveWriter {
 
     private Game game;
@@ -14,6 +17,9 @@ public class SaveWriter {
         this.game = game;
     }
 
+    /**
+     * Writes the level a player is on and the stats they had at the beginning of the level.
+     */
     public void writeSave() {
         File oldSave = new File("data/saves/save.txt");
         System.out.println(oldSave.delete() ? "old save deleted" : "no old save");

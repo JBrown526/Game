@@ -4,6 +4,9 @@ import game.Game;
 
 import javax.swing.*;
 
+/**
+ * AudioPanel is the entity that displays the volume controls at the bottom of the screen.
+ */
 public class AudioPanel {
     private JPanel mainPanel;
     private JButton playPauseButton;
@@ -14,12 +17,15 @@ public class AudioPanel {
 
     private Game game;
 
+    /**
+     * Constructs the AudioPanel, setting all elements as non focusable and adding listeners to the button and sliders.
+     *
+     * @param game The main {@link Game} object.
+     */
     public AudioPanel(Game game) {
         setElementFocus();
 
-        playPauseButton.addActionListener(e -> game.toggleAudio());
-        musicSlider.addChangeListener(e -> game.changeMusicVolume(musicSlider.getValue()));
-        soundEffectSlider.addChangeListener(e -> game.getPlayer().setVolume(soundEffectSlider.getValue()));
+        addInterfaceListeners();
     }
 
     public JPanel getMainPanel() {
@@ -33,5 +39,11 @@ public class AudioPanel {
         musicSlider.setFocusable(false);
         soundEffectLabel.setFocusable(false);
         musicLabel.setFocusable(false);
+    }
+
+    private void addInterfaceListeners() {
+        playPauseButton.addActionListener(e -> game.toggleAudio());
+        musicSlider.addChangeListener(e -> game.changeMusicVolume(musicSlider.getValue()));
+        soundEffectSlider.addChangeListener(e -> game.getPlayer().setVolume(soundEffectSlider.getValue()));
     }
 }

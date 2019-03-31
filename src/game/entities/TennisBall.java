@@ -2,6 +2,9 @@ package game.entities;
 
 import city.cs.engine.*;
 
+/**
+ * The tennis ball is an object that when collided with increases score.
+ */
 public class TennisBall extends StaticBody {
 
     private static final Shape shape = new CircleShape(0.35f);

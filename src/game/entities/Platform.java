@@ -3,6 +3,9 @@ package game.entities;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+/**
+ * The Platform entity is one that the player can stand on.
+ */
 public class Platform extends StaticBody {
 
     // ---------------------- CONSTRUCTOR ----------------------

@@ -2,6 +2,9 @@ package game.entities;
 
 import city.cs.engine.*;
 
+/**
+ * The Bone class is the entity needed to be collected in order to progress to the next level.
+ */
 public class Bone extends StaticBody {
 
     // ---------------------- FIELDS ----------------------
