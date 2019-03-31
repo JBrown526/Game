@@ -13,8 +13,13 @@ public class LevelOne extends GameLevel {
     public void populate(Game game) {
         super.populate(game);
 
+        for (int i = 0; i < 3; i++) {
+            TennisBall ball = new TennisBall(this);
+            ball.setPosition(new Vec2(4+ 3 * i, -10));
+            ball.addCollisionListener(super.getCollisionHandler());
+        }
         TennisBall ball = new TennisBall(this);
-        ball.setPosition(new Vec2(10, -10));
+        ball.setPosition(new Vec2(10, -5));
         ball.addCollisionListener(super.getCollisionHandler());
 
         game.getView().setBackgroundImage("data/backgrounds/forest.png");

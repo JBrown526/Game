@@ -14,6 +14,7 @@ public class ControlPanel {
     private JButton playPauseButton;
     private JButton loadButton;
     private JButton saveButton;
+    private JButton nextLevelButton;
     private JProgressBar healthProgressBar;
 
     private Player player;
@@ -48,6 +49,7 @@ public class ControlPanel {
         playPauseButton.setFocusable(false);
         loadButton.setFocusable(false);
         saveButton.setFocusable(false);
+        nextLevelButton.setFocusable(false);
         healthProgressBar.setFocusable(false);
     }
 
@@ -64,5 +66,6 @@ public class ControlPanel {
         resetButton.addActionListener(e -> game.resetLevel());
         loadButton.addActionListener(e -> game.loadGame());
         saveButton.addActionListener(e -> game.saveGame());
+        nextLevelButton.addActionListener(e -> game.goNextLevel());
     }
 }

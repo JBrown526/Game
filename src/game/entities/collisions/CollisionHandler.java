@@ -70,6 +70,7 @@ public class CollisionHandler implements CollisionListener {
     private void playerTennisBallCollision(Body target) {
         // updates the player's score and destroys the tennis ball
         player.updateScore(1);
+        player.playSound("data/audio/entity_noises/squeak.wav");
         target.destroy();
         System.out.println("tennis ball collected");
     }

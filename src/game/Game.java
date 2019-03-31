@@ -208,6 +208,7 @@ public class Game {
         world = levels[currentLevel];
         world.populate(this);
         controller.setWorld(world);
+        controller.resetBark();
         view.setWorld(world);
         setBackingTrack();
 
@@ -221,6 +222,7 @@ public class Game {
         }
 
         world.addStepListener(tracker);
+        world.addStepListener(controller);
         world.start();
     }
 
@@ -249,6 +251,9 @@ public class Game {
     public void loadGame() {
         SaveReader saveReader = new SaveReader();
         int[] save = saveReader.readSave();
+        for (int num : save) {
+            System.out.println(num);
+        }
         if (save.length != 3) {
             currentLevel = save[0];
             lastLevelHealth = save[1];

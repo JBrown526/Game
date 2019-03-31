@@ -11,6 +11,10 @@ import game.entities.collisions.BoneListener;
 import game.entities.collisions.CollisionHandler;
 import org.jbox2d.common.Vec2;
 
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * GameLevel is the template for the level classes.
  */
@@ -21,12 +25,13 @@ public abstract class GameLevel extends World {
     private Player player;
     private CollisionHandler collisionHandler;
     private boolean playing;
+    private Map<String, Color> colors;
 
     // ---------------------- METHODS ----------------------
 
     /**
      * Creates a new player if none has been created before, and initialises their position as well as that of the
-     * ground and the bone. It also adds collision handlers.
+     * ground and the bone. It also adds collision handlers, and populates the colors HashMap the
      *
      * @param game The main {@link Game} object.
      */
@@ -44,6 +49,11 @@ public abstract class GameLevel extends World {
         bone.addCollisionListener(new BoneListener(game));
 
         makeGround();
+
+        colors = new HashMap<>();
+        colors.put("forest", new Color(24, 48, 52));
+        colors.put("plains", new Color(80, 194, 99));
+
     }
 
     /**
@@ -78,6 +88,10 @@ public abstract class GameLevel extends World {
 
     public CollisionHandler getCollisionHandler() {
         return collisionHandler;
+    }
+
+    public Map<String, Color> getColors() {
+        return colors;
     }
 
     /**

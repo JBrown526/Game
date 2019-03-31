@@ -12,7 +12,7 @@ public class LevelThree extends GameLevel {
         super.populate(game);
 
         for (int i = 0; i < 6; i++) {
-            BreakablePlatform bp = new BreakablePlatform(this, 0.5f, 5, i * 8 + 5, -7, "plains");
+            BreakablePlatform bp = new BreakablePlatform(this, 0.5f, 5, i * 8 + 5, -9.5f, "forest");
             bp.addCollisionListener(super.getCollisionHandler());
         }
 

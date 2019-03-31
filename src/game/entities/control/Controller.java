@@ -152,4 +152,9 @@ public class Controller extends KeyAdapter implements StepListener {
         }
         barking = false;
     }
+
+    public void resetBark() {
+        stepSum = 0;
+        barking = false;
+    }
 }
